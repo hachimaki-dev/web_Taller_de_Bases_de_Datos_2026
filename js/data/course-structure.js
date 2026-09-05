@@ -72,5 +72,13 @@ const courseStructure = {
             badge: 'Hito 1',
             desc: 'Quizzes Previos (30%) + Informe Grupal (10%) + Defensa Oral (60%)'
         }
+    ],
+    activities: [
+        {
+            id: 'act-prep-1',
+            title: 'Taller: Diseña tu Proyecto PL/SQL',
+            desc: 'Actividad guiada para generar entregables de la Evaluación 1',
+            dataFile: 'actividad_prep_eval1_data'
+        }
     ]
 };

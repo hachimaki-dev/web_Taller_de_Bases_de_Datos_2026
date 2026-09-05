@@ -13,9 +13,11 @@
     <link rel="stylesheet" href="css/app.css">
     <link rel="stylesheet" href="css/slides.css">
     <link rel="stylesheet" href="css/exercises.css">
+    <link rel="stylesheet" href="css/workshop.css">
 
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
 </head>
 <body>
     <div id="app" v-cloak class="app-shell">
@@ -45,6 +47,16 @@
                             @click="openEvaluation(ev)">
                         <i class="ph ph-certificate"></i>
                         <span>{{ ev.title }}</span>
+                    </button>
+                </div>
+                <div v-if="course.activities && course.activities.length > 0" class="nav-group">
+                    <div class="nav-group-label">🛠️ Actividades en Clase</div>
+                    <button v-for="act in course.activities" :key="act.id"
+                            class="nav-link activity-link"
+                            :class="{ active: view === 'activity' && currentActivity && currentActivity.id === act.id }"
+                            @click="openActivity(act)">
+                        <i class="ph ph-hammer"></i>
+                        <span>{{ act.title }}</span>
                     </button>
                 </div>
                 <div class="nav-divider"></div>
@@ -113,6 +125,11 @@
                 <evaluation-viewer :eval-data="currentEval"></evaluation-viewer>
             </template>
 
+            <!-- ACTIVITY / WORKSHOP VIEW -->
+            <template v-if="view === 'activity' && currentActivity">
+                <workshop-runner :workshop-data="currentActivity"></workshop-runner>
+            </template>
+
             <!-- SESSION VIEW -->
             <template v-if="view === 'session' && session">
                 <div class="fade-in">
@@ -145,6 +162,7 @@
     <!-- Data files -->
     <script src="js/data/course-structure.js"></script>
     <script src="js/data/evaluacion_1_data.js"></script>
+    <script src="js/data/actividad_prep_eval1_data.js"></script>
     <script src="js/data/s1_2_1_slides.js"></script>
     <script src="js/data/s1_2_1_exercises.js"></script>
     <script src="js/data/s1_2_1_solutions.js"></script>
@@ -168,6 +186,7 @@
     <script src="js/components/SlideViewer.js"></script>
     <script src="js/components/ExerciseRunner.js"></script>
     <script src="js/components/EvaluationViewer.js"></script>
+    <script src="js/components/WorkshopRunner.js"></script>
 
     <!-- App -->
     <script src="js/app.js"></script>
