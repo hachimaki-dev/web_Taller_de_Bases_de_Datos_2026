@@ -21,7 +21,8 @@ const dataMap = {
     s1_4_2_slides: () => s1_4_2_slides,
     s1_4_2_exercises: () => s1_4_2_exercises,
     s1_4_2_solutions: () => s1_4_2_solutions,
-    actividad_prep_eval1_data: () => actividad_prep_eval1_data
+    actividad_prep_eval1_data: () => actividad_prep_eval1_data,
+    quiz_formativa_1_data: () => quiz_formativa_1_data
 };
 
 const App = {
@@ -29,14 +30,16 @@ const App = {
         'slide-viewer': SlideViewer,
         'exercise-runner': ExerciseRunner,
         'evaluation-viewer': EvaluationViewer,
-        'workshop-runner': WorkshopRunner
+        'workshop-runner': WorkshopRunner,
+        'quiz-runner': QuizRunner
     },
     setup() {
         const course = ref(courseStructure);
-        const view = ref('home'); // 'home' | 'session' | 'evaluation' | 'activity'
+        const view = ref('home'); // 'home' | 'session' | 'evaluation' | 'activity' | 'quiz'
         const session = ref(null);
         const currentEval = ref(null);
         const currentActivity = ref(null);
+        const currentQuiz = ref(null);
         const tab = ref('slides');
         const sidebarOpen = ref(false);
 
@@ -63,6 +66,7 @@ const App = {
             session.value = null;
             currentEval.value = null;
             currentActivity.value = null;
+            currentQuiz.value = null;
             sidebarOpen.value = false;
         }
 
@@ -70,6 +74,7 @@ const App = {
             session.value = s;
             currentEval.value = null;
             currentActivity.value = null;
+            currentQuiz.value = null;
             view.value = 'session';
             tab.value = 'slides';
             sidebarOpen.value = false;
@@ -79,6 +84,7 @@ const App = {
             currentEval.value = ev.id === 'eval-1' ? evaluacion_1_data : null;
             session.value = null;
             currentActivity.value = null;
+            currentQuiz.value = null;
             view.value = 'evaluation';
             sidebarOpen.value = false;
         }
@@ -88,7 +94,18 @@ const App = {
             currentActivity.value = fn ? fn() : null;
             session.value = null;
             currentEval.value = null;
+            currentQuiz.value = null;
             view.value = 'activity';
+            sidebarOpen.value = false;
+        }
+
+        function openQuiz(qz) {
+            const fn = dataMap[qz.dataFile];
+            currentQuiz.value = fn ? fn() : null;
+            session.value = null;
+            currentEval.value = null;
+            currentActivity.value = null;
+            view.value = 'quiz';
             sidebarOpen.value = false;
         }
 
@@ -100,9 +117,9 @@ const App = {
         }
 
         return {
-            course, view, session, currentEval, currentActivity, tab, sidebarOpen,
+            course, view, session, currentEval, currentActivity, currentQuiz, tab, sidebarOpen,
             currentSlides, currentExercises, currentSolutions,
-            goHome, openSession, openEvaluation, openActivity, getModuleTitle
+            goHome, openSession, openEvaluation, openActivity, openQuiz, getModuleTitle
         };
     }
 };

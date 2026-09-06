@@ -73,6 +73,15 @@ const courseStructure = {
             desc: 'Quizzes Previos (30%) + Informe Grupal (10%) + Defensa Oral (60%)'
         }
     ],
+    quizzes: [
+        {
+            id: 'quiz-formativa-1',
+            title: 'Evaluación Formativa N° 1: Bloques PL/SQL',
+            badge: 'Formativa 1',
+            desc: '12 preguntas teóricas + 4 bloques PL/SQL prácticos',
+            dataFile: 'quiz_formativa_1_data'
+        }
+    ],
     activities: [
         {
             id: 'act-prep-1',
@@ -82,3 +91,4 @@ const courseStructure = {
         }
     ]
 };
+

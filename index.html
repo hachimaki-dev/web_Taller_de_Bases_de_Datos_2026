@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="css/slides.css">
     <link rel="stylesheet" href="css/exercises.css">
     <link rel="stylesheet" href="css/workshop.css">
+    <link rel="stylesheet" href="css/quiz.css">
 
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
@@ -47,6 +48,16 @@
                             @click="openEvaluation(ev)">
                         <i class="ph ph-certificate"></i>
                         <span>{{ ev.title }}</span>
+                    </button>
+                </div>
+                <div v-if="course.quizzes && course.quizzes.length > 0" class="nav-group">
+                    <div class="nav-group-label">📝 Quizzes y Evaluaciones</div>
+                    <button v-for="qz in course.quizzes" :key="qz.id"
+                            class="nav-link"
+                            :class="{ active: view === 'quiz' && currentQuiz && currentQuiz.id === qz.id }"
+                            @click="openQuiz(qz)">
+                        <i class="ph ph-exam"></i>
+                        <span>{{ qz.title }}</span>
                     </button>
                 </div>
                 <div v-if="course.activities && course.activities.length > 0" class="nav-group">
@@ -93,7 +104,7 @@
                 </div>
 
                 <!-- Banner destacado Evaluación 1 -->
-                <div v-if="course.evaluations && course.evaluations.length > 0" class="eval-card fade-in" style="margin-bottom: 2rem; border-left: 4px solid var(--primary); background: linear-gradient(to right, #ffffff, #f8fafc);">
+                <div v-if="course.evaluations && course.evaluations.length > 0" class="eval-card fade-in" style="margin-bottom: 1.5rem; border-left: 4px solid var(--primary); background: linear-gradient(to right, #ffffff, #f8fafc);">
                     <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
                         <div>
                             <span class="badge" style="background:#ede9fe; color:#6d28d9; font-weight:700; padding:0.25rem 0.625rem; border-radius:9999px; margin-bottom:0.5rem; display:inline-block;">
@@ -104,6 +115,22 @@
                         </div>
                         <button class="check-btn" @click="openEvaluation(course.evaluations[0])" style="margin: 0; padding: 0.625rem 1.25rem;">
                             <i class="ph ph-arrow-right"></i> Ver Instrucciones y Pauta
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Banner destacado Quiz Formativo 1 -->
+                <div v-if="course.quizzes && course.quizzes.length > 0" class="eval-card fade-in" style="margin-bottom: 2rem; border-left: 4px solid var(--secondary); background: linear-gradient(to right, #ffffff, #faf5ff);">
+                    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+                        <div>
+                            <span class="badge" style="background:#f3e8ff; color:#7e22ce; font-weight:700; padding:0.25rem 0.625rem; border-radius:9999px; margin-bottom:0.5rem; display:inline-block;">
+                                <i class="ph ph-exam"></i> Formativa 1 (12 Teóricas + 4 Bloques PL/SQL)
+                            </span>
+                            <h2 style="font-size: 1.25rem; font-weight: 700; margin: 0.25rem 0;">{{ course.quizzes[0].title }}</h2>
+                            <p style="font-size: 0.875rem; color: var(--text-muted); margin: 0;">{{ course.quizzes[0].desc }} — Requiere clave docente de acceso.</p>
+                        </div>
+                        <button class="check-btn" @click="openQuiz(course.quizzes[0])" style="margin: 0; padding: 0.625rem 1.25rem; background: var(--secondary);">
+                            <i class="ph ph-arrow-right"></i> Rendir Quiz
                         </button>
                     </div>
                 </div>
@@ -128,6 +155,11 @@
             <!-- ACTIVITY / WORKSHOP VIEW -->
             <template v-if="view === 'activity' && currentActivity">
                 <workshop-runner :workshop-data="currentActivity"></workshop-runner>
+            </template>
+
+            <!-- QUIZ VIEW -->
+            <template v-if="view === 'quiz' && currentQuiz">
+                <quiz-runner :quiz-data="currentQuiz" :key="currentQuiz.id"></quiz-runner>
             </template>
 
             <!-- SESSION VIEW -->
@@ -163,6 +195,7 @@
     <script src="js/data/course-structure.js"></script>
     <script src="js/data/evaluacion_1_data.js"></script>
     <script src="js/data/actividad_prep_eval1_data.js"></script>
+    <script src="js/data/quiz_formativa_1_data.js"></script>
     <script src="js/data/s1_2_1_slides.js"></script>
     <script src="js/data/s1_2_1_exercises.js"></script>
     <script src="js/data/s1_2_1_solutions.js"></script>
@@ -187,6 +220,7 @@
     <script src="js/components/ExerciseRunner.js"></script>
     <script src="js/components/EvaluationViewer.js"></script>
     <script src="js/components/WorkshopRunner.js"></script>
+    <script src="js/components/QuizRunner.js"></script>
 
     <!-- App -->
     <script src="js/app.js"></script>
