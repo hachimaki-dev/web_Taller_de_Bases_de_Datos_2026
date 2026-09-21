@@ -63,6 +63,26 @@ const courseStructure = {
                     solutionsFile: 's1_4_2_solutions'
                 }
             ]
+        },
+        {
+            id: '2-1',
+            title: '2.1 Procedimientos Almacenados y Funciones',
+            sessions: [
+                {
+                    id: '2-1-1',
+                    title: 'Sesión 1: Fundamentos de Proc y Func',
+                    slidesFile: 's2_1_1_slides',
+                    exercisesFile: 's2_1_1_exercises',
+                    solutionsFile: 's2_1_1_solutions'
+                },
+                {
+                    id: '2-1-2',
+                    title: 'Sesión 2: Casos Prácticos con Punto Ticket',
+                    slidesFile: 's2_1_2_slides',
+                    exercisesFile: 's2_1_2_exercises',
+                    solutionsFile: 's2_1_2_solutions'
+                }
+            ]
         }
     ],
     evaluations: [

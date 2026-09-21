@@ -21,6 +21,12 @@ const dataMap = {
     s1_4_2_slides: () => s1_4_2_slides,
     s1_4_2_exercises: () => s1_4_2_exercises,
     s1_4_2_solutions: () => s1_4_2_solutions,
+    s2_1_1_slides: () => s2_1_1_slides,
+    s2_1_1_exercises: () => s2_1_1_exercises,
+    s2_1_1_solutions: () => s2_1_1_solutions,
+    s2_1_2_slides: () => s2_1_2_slides,
+    s2_1_2_exercises: () => s2_1_2_exercises,
+    s2_1_2_solutions: () => s2_1_2_solutions,
     actividad_prep_eval1_data: () => actividad_prep_eval1_data,
     quiz_formativa_1_data: () => quiz_formativa_1_data
 };
