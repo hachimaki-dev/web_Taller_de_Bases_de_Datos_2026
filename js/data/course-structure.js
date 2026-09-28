@@ -83,6 +83,33 @@ const courseStructure = {
                     solutionsFile: 's2_1_2_solutions'
                 }
             ]
+        },
+        {
+            id: '2-2',
+            title: '2.2 Triggers',
+            sessions: [
+                {
+                    id: '2-2-1',
+                    title: 'Sesión 1: Introducción Guiada a Triggers',
+                    slidesFile: 's2_2_1_slides',
+                    exercisesFile: 's2_2_1_exercises',
+                    solutionsFile: 's2_2_1_solutions'
+                },
+                {
+                    id: '2-2-2',
+                    title: 'Sesión 2: Fundamentos y Tipos de Triggers',
+                    slidesFile: 's2_2_2_slides',
+                    exercisesFile: 's2_2_2_exercises',
+                    solutionsFile: 's2_2_2_solutions'
+                },
+                {
+                    id: '2-2-3',
+                    title: 'Sesión 3: Casos Prácticos y Mutating Tables',
+                    slidesFile: 's2_2_3_slides',
+                    exercisesFile: 's2_2_3_exercises',
+                    solutionsFile: 's2_2_3_solutions'
+                }
+            ]
         }
     ],
     evaluations: [
