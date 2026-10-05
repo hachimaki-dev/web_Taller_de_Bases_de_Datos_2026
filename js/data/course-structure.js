@@ -110,6 +110,26 @@ const courseStructure = {
                     solutionsFile: 's2_2_3_solutions'
                 }
             ]
+        },
+        {
+            id: '2-3',
+            title: '2.3 Paquetes (Packages)',
+            sessions: [
+                {
+                    id: '2-3-1',
+                    title: 'Sesión 1: Fundamentos de Paquetes',
+                    slidesFile: 's2_3_1_slides',
+                    exercisesFile: 's2_3_1_exercises',
+                    solutionsFile: 's2_3_1_solutions'
+                },
+                {
+                    id: '2-3-2',
+                    title: 'Sesión 2: Casos Avanzados y Arquitectura',
+                    slidesFile: 's2_3_2_slides',
+                    exercisesFile: 's2_3_2_exercises',
+                    solutionsFile: 's2_3_2_solutions'
+                }
+            ]
         }
     ],
     evaluations: [
