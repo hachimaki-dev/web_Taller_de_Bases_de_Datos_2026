@@ -130,6 +130,19 @@ const courseStructure = {
                     solutionsFile: 's2_3_2_solutions'
                 }
             ]
+        },
+        {
+            id: '3-1',
+            title: '3.1 Introducción a NoSQL y MongoDB Atlas',
+            sessions: [
+                {
+                    id: '3-1-1',
+                    title: 'Sesión 1: NoSQL, JSON/BSON y Operaciones Create & Read',
+                    slidesFile: 's3_1_1_slides',
+                    exercisesFile: 's3_1_1_exercises',
+                    solutionsFile: 's3_1_1_solutions'
+                }
+            ]
         }
     ],
     evaluations: [

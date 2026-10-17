@@ -42,6 +42,9 @@ const dataMap = {
     s2_3_2_slides: () => s2_3_2_slides,
     s2_3_2_exercises: () => s2_3_2_exercises,
     s2_3_2_solutions: () => s2_3_2_solutions,
+    s3_1_1_slides: () => s3_1_1_slides,
+    s3_1_1_exercises: () => s3_1_1_exercises,
+    s3_1_1_solutions: () => s3_1_1_solutions,
     actividad_prep_eval1_data: () => actividad_prep_eval1_data,
     quiz_formativa_1_data: () => quiz_formativa_1_data
 };
