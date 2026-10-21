@@ -119,19 +119,21 @@
                     </div>
                 </div>
 
-                <!-- Banner destacado Quiz Formativo 1 -->
-                <div v-if="course.quizzes && course.quizzes.length > 0" class="eval-card fade-in" style="margin-bottom: 2rem; border-left: 4px solid var(--secondary); background: linear-gradient(to right, #ffffff, #faf5ff);">
-                    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
-                        <div>
-                            <span class="badge" style="background:#f3e8ff; color:#7e22ce; font-weight:700; padding:0.25rem 0.625rem; border-radius:9999px; margin-bottom:0.5rem; display:inline-block;">
-                                <i class="ph ph-exam"></i> Formativa 1 (12 Teóricas + 4 Bloques PL/SQL)
-                            </span>
-                            <h2 style="font-size: 1.25rem; font-weight: 700; margin: 0.25rem 0;">{{ course.quizzes[0].title }}</h2>
-                            <p style="font-size: 0.875rem; color: var(--text-muted); margin: 0;">{{ course.quizzes[0].desc }} — Requiere clave docente de acceso.</p>
+                <!-- Banners destacados Quizzes Formativos -->
+                <div v-if="course.quizzes && course.quizzes.length > 0" style="display: flex; flex-direction: column; gap: 1.25rem; margin-bottom: 2rem;">
+                    <div v-for="qz in course.quizzes" :key="qz.id" class="eval-card fade-in" style="margin-bottom: 0; border-left: 4px solid var(--secondary); background: linear-gradient(to right, #ffffff, #faf5ff);">
+                        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+                            <div>
+                                <span class="badge" style="background:#f3e8ff; color:#7e22ce; font-weight:700; padding:0.25rem 0.625rem; border-radius:9999px; margin-bottom:0.5rem; display:inline-block;">
+                                    <i class="ph ph-exam"></i> {{ qz.badge || 'Quiz' }}
+                                </span>
+                                <h2 style="font-size: 1.25rem; font-weight: 700; margin: 0.25rem 0;">{{ qz.title }}</h2>
+                                <p style="font-size: 0.875rem; color: var(--text-muted); margin: 0;">{{ qz.desc }}</p>
+                            </div>
+                            <button class="check-btn" @click="openQuiz(qz)" style="margin: 0; padding: 0.625rem 1.25rem; background: var(--secondary);">
+                                <i class="ph ph-arrow-right"></i> Rendir Quiz
+                            </button>
                         </div>
-                        <button class="check-btn" @click="openQuiz(course.quizzes[0])" style="margin: 0; padding: 0.625rem 1.25rem; background: var(--secondary);">
-                            <i class="ph ph-arrow-right"></i> Rendir Quiz
-                        </button>
                     </div>
                 </div>
 
@@ -196,6 +198,7 @@
     <script src="js/data/evaluacion_1_data.js"></script>
     <script src="js/data/actividad_prep_eval1_data.js"></script>
     <script src="js/data/quiz_formativa_1_data.js"></script>
+    <script src="js/data/quiz_formativa_2_data.js"></script>
     <script src="js/data/s1_2_1_slides.js"></script>
     <script src="js/data/s1_2_1_exercises.js"></script>
     <script src="js/data/s1_2_1_solutions.js"></script>

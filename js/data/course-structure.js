@@ -160,6 +160,13 @@ const courseStructure = {
             badge: 'Formativa 1',
             desc: '12 preguntas teóricas + 4 bloques PL/SQL prácticos',
             dataFile: 'quiz_formativa_1_data'
+        },
+        {
+            id: 'quiz-formativa-2',
+            title: 'Evaluación Formativa N° 2: Fundamentos PL/SQL (Unidad 2)',
+            badge: 'Formativa 2',
+            desc: 'Funciones, Procedimientos, Triggers, Paquetes, 6 códigos a completar y Caso de Arquitectura',
+            dataFile: 'quiz_formativa_2_data'
         }
     ],
     activities: [

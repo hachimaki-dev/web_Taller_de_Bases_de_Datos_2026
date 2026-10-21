@@ -46,7 +46,8 @@ const dataMap = {
     s3_1_1_exercises: () => s3_1_1_exercises,
     s3_1_1_solutions: () => s3_1_1_solutions,
     actividad_prep_eval1_data: () => actividad_prep_eval1_data,
-    quiz_formativa_1_data: () => quiz_formativa_1_data
+    quiz_formativa_1_data: () => quiz_formativa_1_data,
+    quiz_formativa_2_data: () => quiz_formativa_2_data
 };
 
 const App = {
