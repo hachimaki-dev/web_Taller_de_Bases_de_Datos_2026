@@ -59,6 +59,10 @@
                         <i class="ph ph-exam"></i>
                         <span>{{ qz.title }}</span>
                     </button>
+                    <a href="solucionario_formativa_2.html" target="_blank" class="nav-link" style="color: #6d28d9; font-weight: 600; text-decoration: none;">
+                        <i class="ph ph-certificate"></i>
+                        <span>Pauta Formativa 2 (Docente)</span>
+                    </a>
                 </div>
                 <div v-if="course.activities && course.activities.length > 0" class="nav-group">
                     <div class="nav-group-label">🛠️ Actividades en Clase</div>
@@ -130,9 +134,14 @@
                                 <h2 style="font-size: 1.25rem; font-weight: 700; margin: 0.25rem 0;">{{ qz.title }}</h2>
                                 <p style="font-size: 0.875rem; color: var(--text-muted); margin: 0;">{{ qz.desc }}</p>
                             </div>
-                            <button class="check-btn" @click="openQuiz(qz)" style="margin: 0; padding: 0.625rem 1.25rem; background: var(--secondary);">
-                                <i class="ph ph-arrow-right"></i> Rendir Quiz
-                            </button>
+                            <div style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap;">
+                                <a v-if="qz.id === 'quiz-formativa-2'" href="solucionario_formativa_2.html" target="_blank" class="check-btn" style="margin: 0; padding: 0.625rem 1rem; background: #6d28d9; text-decoration: none; display: inline-flex; align-items: center; gap: 0.35rem;">
+                                    <i class="ph ph-certificate"></i> Pauta / Solucionario
+                                </a>
+                                <button class="check-btn" @click="openQuiz(qz)" style="margin: 0; padding: 0.625rem 1.25rem; background: var(--secondary);">
+                                    <i class="ph ph-arrow-right"></i> Rendir Quiz
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -1,0 +1,1876 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pauta Oficial y Solucionario: Evaluación Formativa N° 2 — Taller de Bases de Datos</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <style>
+        :root {
+            --primary: #4f46e5;
+            --primary-light: #6366f1;
+            --primary-dark: #3730a3;
+            --secondary: #0284c7;
+            --accent: #8b5cf6;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --bg-body: #f8fafc;
+            --bg-card: #ffffff;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+            --border-hover: #cbd5e1;
+            --code-bg: #0b1120;
+            --radius-sm: 6px;
+            --radius: 12px;
+            --radius-lg: 18px;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.05);
+            --shadow: 0 4px 6px -1px rgba(0,0,0,0.07), 0 2px 4px -2px rgba(0,0,0,0.05);
+            --shadow-lg: 0 15px 30px -5px rgba(0,0,0,0.1), 0 10px 15px -5px rgba(0,0,0,0.04);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Top Navigation Bar */
+        .top-navbar {
+            position: sticky;
+            top: 0;
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            z-index: 100;
+            padding: 0.75rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+            color: var(--text-main);
+            font-family: 'Outfit', sans-serif;
+            font-weight: 700;
+            font-size: 1.15rem;
+        }
+
+        .navbar-brand .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            color: white;
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+        }
+
+        .navbar-actions {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .nav-btn {
+            padding: 0.5rem 1rem;
+            border-radius: var(--radius-sm);
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: 1px solid var(--border);
+            background: white;
+            color: var(--text-main);
+        }
+
+        .nav-btn:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .nav-btn.primary {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .nav-btn.primary:hover {
+            background: var(--primary-dark);
+        }
+
+        /* Hero Header */
+        .hero-header {
+            background: linear-gradient(135deg, #1e1b4b 0%, #0f172a 100%);
+            color: white;
+            padding: 3.5rem 2rem 4rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-header::after {
+            content: '';
+            position: absolute;
+            bottom: -50px;
+            right: -50px;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.25) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .hero-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-badge-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .badge-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.375rem;
+            padding: 0.3rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.03em;
+            text-transform: uppercase;
+        }
+
+        .badge-pill.purple { background: rgba(139, 92, 246, 0.25); color: #c4b5fd; border: 1px solid rgba(139, 92, 246, 0.4); }
+        .badge-pill.cyan { background: rgba(6, 182, 212, 0.25); color: #67e8f9; border: 1px solid rgba(6, 182, 212, 0.4); }
+        .badge-pill.green { background: rgba(16, 185, 129, 0.25); color: #6ee7b7; border: 1px solid rgba(16, 185, 129, 0.4); }
+
+        .hero-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 2.35rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 0.75rem;
+            letter-spacing: -0.02em;
+        }
+
+        .hero-subtitle {
+            font-size: 1.1rem;
+            color: #cbd5e1;
+            max-width: 800px;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-meta-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            padding-top: 1.25rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.12);
+        }
+
+        .hero-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .hero-meta-item i {
+            font-size: 1.4rem;
+            color: #818cf8;
+        }
+
+        .hero-meta-item div span {
+            display: block;
+            font-size: 0.75rem;
+            color: #94a3b8;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        .hero-meta-item div strong {
+            font-size: 0.95rem;
+            color: #f8fafc;
+        }
+
+        /* Layout Container */
+        .main-container {
+            max-width: 1100px;
+            margin: -2rem auto 4rem auto;
+            padding: 0 1.5rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Quick Jump Filter Bar */
+        .filter-nav {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 0.75rem;
+            display: flex;
+            gap: 0.5rem;
+            overflow-x: auto;
+            box-shadow: var(--shadow);
+            margin-bottom: 2rem;
+            scrollbar-width: thin;
+        }
+
+        .filter-pill {
+            padding: 0.6rem 1.1rem;
+            border-radius: var(--radius-sm);
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-decoration: none;
+            white-space: nowrap;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .filter-pill:hover {
+            background: #f1f5f9;
+            color: var(--text-main);
+        }
+
+        .filter-pill.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Section Container */
+        .section-card {
+            background: var(--bg-card);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow-sm);
+            padding: 2.25rem;
+            margin-bottom: 2.5rem;
+            transition: all 0.2s ease;
+        }
+
+        .section-card:hover {
+            box-shadow: var(--shadow);
+        }
+
+        .section-header {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            margin-bottom: 1.75rem;
+            padding-bottom: 1.25rem;
+            border-bottom: 2px solid var(--border);
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .section-header-content {
+            display: flex;
+            align-items: center;
+            gap: 0.875rem;
+        }
+
+        .section-header-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: var(--radius);
+            background: #ede9fe;
+            color: #6d28d9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .section-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.45rem;
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        .section-desc {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            margin-top: 0.2rem;
+        }
+
+        .section-weight-badge {
+            background: #f1f5f9;
+            color: var(--primary);
+            font-weight: 700;
+            font-size: 0.85rem;
+            padding: 0.4rem 0.875rem;
+            border-radius: 9999px;
+            border: 1px solid var(--border);
+        }
+
+        /* Callout Boxes (Teacher Style) */
+        .profe-box {
+            background: linear-gradient(135deg, #eef2ff 0%, #f5f3ff 100%);
+            border-left: 4px solid var(--primary);
+            border-radius: 0 var(--radius) var(--radius) 0;
+            padding: 1.25rem 1.5rem;
+            margin: 1.25rem 0;
+            position: relative;
+        }
+
+        .profe-box-title {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            font-size: 0.95rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .profe-box-content {
+            font-size: 0.925rem;
+            color: #334155;
+            line-height: 1.6;
+        }
+
+        .profe-box-content em {
+            font-style: italic;
+            color: #4338ca;
+            font-weight: 500;
+        }
+
+        .tip-box {
+            background: #ecfdf5;
+            border-left: 4px solid var(--success);
+            border-radius: 0 var(--radius) var(--radius) 0;
+            padding: 1rem 1.25rem;
+            margin: 1rem 0;
+            color: #065f46;
+            font-size: 0.9rem;
+        }
+
+        .warning-box {
+            background: #fffbeb;
+            border-left: 4px solid var(--warning);
+            border-radius: 0 var(--radius) var(--radius) 0;
+            padding: 1rem 1.25rem;
+            margin: 1rem 0;
+            color: #92400e;
+            font-size: 0.9rem;
+        }
+
+        /* Question Cards */
+        .qa-card {
+            background: #ffffff;
+            border: 1.5px solid var(--border);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            margin-bottom: 1.75rem;
+            transition: all 0.2s ease;
+        }
+
+        .qa-card:hover {
+            border-color: #cbd5e1;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+        }
+
+        .qa-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .qa-number {
+            font-size: 0.8rem;
+            font-weight: 800;
+            background: #f1f5f9;
+            color: var(--primary);
+            padding: 0.25rem 0.6rem;
+            border-radius: var(--radius-sm);
+            text-transform: uppercase;
+        }
+
+        .qa-topic-tag {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            background: #f8fafc;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            border: 1px solid var(--border);
+        }
+
+        .qa-question-text {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--text-main);
+            line-height: 1.5;
+            margin-bottom: 1.25rem;
+        }
+
+        /* Options list */
+        .options-display {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .option-item {
+            padding: 0.75rem 1rem;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border);
+            font-size: 0.9rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            background: #f8fafc;
+        }
+
+        .option-item.correct {
+            background: #ecfdf5;
+            border-color: #a7f3d0;
+            color: #065f46;
+            font-weight: 600;
+        }
+
+        .option-item.correct i {
+            color: #10b981;
+            font-size: 1.2rem;
+            margin-top: 0.1rem;
+        }
+
+        .option-item.distractor {
+            opacity: 0.75;
+        }
+
+        .option-item.distractor i {
+            color: #94a3b8;
+            font-size: 1.1rem;
+            margin-top: 0.1rem;
+        }
+
+        /* Tables */
+        .pauta-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.25rem 0;
+            font-size: 0.9rem;
+        }
+
+        .pauta-table th {
+            background: #f8fafc;
+            color: var(--text-muted);
+            font-weight: 700;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            padding: 0.75rem 1rem;
+            border: 1px solid var(--border);
+            text-align: left;
+        }
+
+        .pauta-table td {
+            padding: 0.875rem 1rem;
+            border: 1px solid var(--border);
+            color: var(--text-main);
+            vertical-align: top;
+        }
+
+        .pauta-table tr:hover td {
+            background: #fafafa;
+        }
+
+        .pauta-table td.correct-cell {
+            background: #f0fdf4;
+            font-weight: 600;
+            color: #166534;
+        }
+
+        /* Code Blocks */
+        .code-container {
+            background: var(--code-bg);
+            border-radius: var(--radius);
+            overflow: hidden;
+            margin: 1.25rem 0;
+            border: 1px solid #1e293b;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+        }
+
+        .code-header {
+            background: #111827;
+            padding: 0.625rem 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #1f2937;
+        }
+
+        .code-title {
+            color: #94a3b8;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .code-copy-btn {
+            background: #1f2937;
+            border: 1px solid #374151;
+            color: #cbd5e1;
+            padding: 0.3rem 0.65rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+        }
+
+        .code-copy-btn:hover {
+            background: #374151;
+            color: white;
+        }
+
+        pre.code-body {
+            margin: 0;
+            padding: 1.25rem;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.85rem;
+            line-height: 1.7;
+            color: #f8fafc;
+            overflow-x: auto;
+            white-space: pre;
+        }
+
+        .kw { color: #f472b6; font-weight: 600; }   /* Keywords */
+        .fn { color: #38bdf8; font-weight: 600; }   /* Functions */
+        .str { color: #a3e635; }                     /* Strings */
+        .num { color: #fbbf24; }                     /* Numbers */
+        .cm { color: #64748b; font-style: italic; }  /* Comments */
+        .hl-blank {
+            background: rgba(16, 185, 129, 0.2);
+            color: #6ee7b7;
+            padding: 0.15rem 0.4rem;
+            border-radius: 4px;
+            font-weight: 700;
+            border: 1px solid rgba(16, 185, 129, 0.4);
+        }
+
+        /* Case Architecture Model Box */
+        .case-model-box {
+            background: #ffffff;
+            border: 2px solid #6366f1;
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            margin: 1.5rem 0;
+            box-shadow: 0 10px 25px -5px rgba(99, 102, 241, 0.1);
+        }
+
+        .case-model-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .case-paragraph {
+            margin-bottom: 1.25rem;
+            font-size: 0.95rem;
+            line-height: 1.75;
+            color: #1e293b;
+        }
+
+        .case-paragraph strong {
+            color: var(--primary);
+        }
+
+        /* Footer */
+        .pauta-footer {
+            border-top: 1px solid var(--border);
+            padding: 2.5rem 1.5rem;
+            text-align: center;
+            background: white;
+            color: var(--text-muted);
+            font-size: 0.875rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero-title { font-size: 1.75rem; }
+            .section-card { padding: 1.5rem; }
+            .top-navbar { padding: 0.75rem 1rem; }
+        }
+
+        @media print {
+            .top-navbar, .filter-nav, .code-copy-btn { display: none; }
+            .section-card { break-inside: avoid; border: 1px solid #ccc; box-shadow: none; margin-bottom: 2rem; }
+            .hero-header { background: #1e1b4b !important; -webkit-print-color-adjust: exact; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- TOP NAVBAR -->
+    <nav class="top-navbar">
+        <a href="index.html" class="navbar-brand">
+            <div class="logo-icon"><i class="ph ph-database"></i></div>
+            <span>BDY1103 · Taller de Bases de Datos</span>
+        </a>
+        <div class="navbar-actions">
+            <a href="index.html" class="nav-btn">
+                <i class="ph ph-arrow-left"></i> Volver a la Plataforma
+            </a>
+            <button onclick="window.print()" class="nav-btn primary">
+                <i class="ph ph-printer"></i> Imprimir Pauta / PDF
+            </button>
+        </div>
+    </nav>
+
+    <!-- HERO HEADER -->
+    <header class="hero-header">
+        <div class="hero-container">
+            <div class="hero-badge-group">
+                <span class="badge-pill purple"><i class="ph ph-certificate"></i> Pauta y Solucionario Oficial</span>
+                <span class="badge-pill cyan"><i class="ph ph-sparkle"></i> Fundamentos Unidad 2</span>
+                <span class="badge-pill green"><i class="ph ph-scales"></i> Escala Chilena 1.0 - 7.0 (60%)</span>
+            </div>
+            <h1 class="hero-title">Evaluación Formativa N° 2: Fundamentos de Arquitectura PL/SQL</h1>
+            <p class="hero-subtitle">
+                Guía completa de resolución técnica y pedagógica escrita desde la perspectiva docente. Incluye el análisis exhaustivo de alternativas, justificaciones obligatorias de Verdadero/Falso, código fuente restaurado de los 6 bloques y el relato modelo del caso de arquitectura para Punto Ticket.
+            </p>
+            <div class="hero-meta-grid">
+                <div class="hero-meta-item">
+                    <i class="ph ph-chalkboard-teacher"></i>
+                    <div>
+                        <span>Docente Titular</span>
+                        <strong>Equipo Académico BDY1103</strong>
+                    </div>
+                </div>
+                <div class="hero-meta-item">
+                    <i class="ph ph-target"></i>
+                    <div>
+                        <span>Alcance Curricular</span>
+                        <strong>Procedimientos, Funciones, Triggers y Paquetes</strong>
+                    </div>
+                </div>
+                <div class="hero-meta-item">
+                    <i class="ph ph-check-circle"></i>
+                    <div>
+                        <span>Puntaje Total</span>
+                        <strong>100 Puntos (Aprobación con 60 pts = 4.0)</strong>
+                    </div>
+                </div>
+                <div class="hero-meta-item">
+                    <i class="ph ph-robot"></i>
+                    <div>
+                        <span>Compatibilidad</span>
+                        <strong>Pauta Estructurada para Agentes IA</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-container">
+
+        <!-- QUICK FILTER PILLS -->
+        <nav class="filter-nav">
+            <a href="#sec-alternativas" class="filter-pill active"><i class="ph ph-radio-button"></i> 1. Alternativas (8)</a>
+            <a href="#sec-multiselect" class="filter-pill"><i class="ph ph-check-square"></i> 2. Selección Múltiple (4)</a>
+            <a href="#sec-matching" class="filter-pill"><i class="ph ph-arrows-split"></i> 3. Términos Pareados (6)</a>
+            <a href="#sec-verdadero-falso" class="filter-pill"><i class="ph ph-chat-circle-dots"></i> 4. V / F Justificados (6)</a>
+            <a href="#sec-codigo" class="filter-pill"><i class="ph ph-code"></i> 5. Completar Código (6)</a>
+            <a href="#sec-caso" class="filter-pill"><i class="ph ph-buildings"></i> 6. Caso Arquitectura</a>
+            <a href="#sec-rubrica" class="filter-pill"><i class="ph ph-calculator"></i> 7. Rúbrica y Escala</a>
+        </nav>
+
+        <!-- MENSAJE DE BIENVENIDA DEL DOCENTE -->
+        <div class="profe-box" style="margin-bottom: 2rem;">
+            <div class="profe-box-title">
+                <i class="ph-fill ph-chat-circle-text" style="font-size: 1.25rem;"></i>
+                Nota del Docente a los Estudiantes: ¿Cómo estudiar y revisar esta pauta?
+            </div>
+            <div class="profe-box-content">
+                ¡Hola a todos! Les preparé este documento no solo para que revisen si marcaron la letra correcta, sino para que <em>entiendan el porqué técnico y arquitectónico</em> detrás de cada decisión. En las clases les insistí mucho en que la base de datos no es solo un almacén de filas: con PL/SQL es un <strong>motor activo de reglas de negocio</strong>. Aquí verán cómo se conectan la calculadora (funciones), el mecánico (procedimientos), el guardia invisible (triggers) y el menú organizado (paquetes). Estudien con calma las justificaciones y los distractores.
+            </div>
+        </div>
+
+        <!-- ================================================================= -->
+        <!-- SECCIÓN 1: ALTERNATIVAS (SELECCIÓN SIMPLE)                        -->
+        <!-- ================================================================= -->
+        <section id="sec-alternativas" class="section-card">
+            <div class="section-header">
+                <div class="section-header-content">
+                    <div class="section-header-icon"><i class="ph ph-radio-button"></i></div>
+                    <div>
+                        <h2 class="section-title">Parte 1: Preguntas de Selección Simple (Alternativas)</h2>
+                        <p class="section-desc">8 preguntas de selección única con análisis de distractores y feedback pedagógico.</p>
+                    </div>
+                </div>
+                <span class="section-weight-badge">24 Puntos (3 pts c/u)</span>
+            </div>
+
+            <!-- PREGUNTA 1 -->
+            <div class="qa-card">
+                <div class="qa-header">
+                    <span class="qa-number">Pregunta 1</span>
+                    <span class="qa-topic-tag">Slide s2_1_1: Procedimientos vs Funciones</span>
+                </div>
+                <div class="qa-question-text">
+                    ¿Cuál es la diferencia fundamental en la invocación de una FUNCTION frente a un PROCEDURE en Oracle PL/SQL?
+                </div>
+                <div class="options-display">
+                    <div class="option-item distractor">
+                        <i class="ph ph-circle"></i>
+                        <span>a) Un PROCEDURE siempre retorna exactamente un valor escalar, mientras que una FUNCTION retorna un conjunto de registros.</span>
+                    </div>
+                    <div class="option-item correct">
+                        <i class="ph-fill ph-check-circle"></i>
+                        <span>b) Una FUNCTION siempre retorna exactamente un valor con RETURN y puede usarse directamente dentro de una sentencia SELECT (si no realiza DML), mientras que un PROCEDURE ejecuta acciones y no retorna un valor directamente.</span>
+                    </div>
+                    <div class="option-item distractor">
+                        <i class="ph ph-circle"></i>
+                        <span>c) Un PROCEDURE se compila en el diccionario de datos cada vez que se ejecuta, mientras que una FUNCTION solo se compila una vez.</span>
+                    </div>
+                    <div class="option-item distractor">
+                        <i class="ph ph-circle"></i>
+                        <span>d) Una FUNCTION no puede recibir parámetros de tipo IN, a diferencia de los procedimientos que admiten cualquier modo.</span>
+                    </div>
+                </div>
+                <div class="profe-box">
+                    <div class="profe-box-title"><i class="ph ph-lightbulb"></i> Mi Explicación en Clases (La analogía de la Calculadora y el Mecánico):</div>
+                    <div class="profe-box-content">
+                        <strong>Clave correcta: b.</strong> Recuerden siempre la analogía: la <em>Función es como una calculadora</em> (le das números, aprietas un botón y siempre te devuelve un único resultado que puedes incrustar directamente en un `SELECT columna, funcion(columna) FROM tabla`). En cambio, el <em>Procedimiento es como el mecánico</em>: va a la base de datos a hacer un trabajo (INSERT, UPDATE, DELETE), no devuelve nada directamente en una expresión matemática, y si necesitas que te comunique datos, lo hace a través de parámetros `OUT`.
+                    </div>
+                </div>
+            </div>
+
+            <!-- PREGUNTA 2 -->
+            <div class="qa-card">
+                <div class="qa-header">
+                    <span class="qa-number">Pregunta 2</span>
+                    <span class="qa-topic-tag">Slide s2_1_1: Parámetros OUT</span>
+                </div>
+                <div class="qa-question-text">
+                    Si un procedimiento tiene un parámetro definido como OUT, ¿qué ocurre con el valor de esa variable al ingresar al cuerpo del procedimiento?
+                </div>
+                <div class="options-display">
+                    <div class="option-item distractor">
+                        <i class="ph ph-circle"></i>
+                        <span>a) Conserva el valor que tenía en el bloque que lo invocó.</span>
+                    </div>
+                    <div class="option-item distractor">
+                        <i class="ph ph-circle"></i>
+                        <span>b) Produce un error de compilación si el invocante no le asignó un valor inicial.</span>
+                    </div>
+                    <div class="option-item correct">
+                        <i class="ph-fill ph-check-circle"></i>
+                        <span>c) Comienza siempre en NULL dentro del procedimiento, ignorando cualquier valor previo del invocante.</span>
+                    </div>
+                    <div class="option-item distractor">
+                        <i class="ph ph-circle"></i>
+                        <span>d) Se convierte automáticamente en una constante de solo lectura.</span>
+                    </div>
+                </div>
+                <div class="profe-box">
+                    <div class="profe-box-title"><i class="ph ph-lightbulb"></i> Mi Explicación en Clases:</div>
+                    <div class="profe-box-content">
+                        <strong>Clave correcta: c.</strong> Este es uno de los errores conceptuales más frecuentes en los laboratorios. Si tú afuera tienes `v_total := 50000;` y se la pasas a un procedimiento como parámetro `OUT`, <em>ese 50.000 se ignora</em>. Apenas cruza la puerta del procedimiento, la variable vale `NULL`. El único modo que conserva el valor que entra Y además lo puede devolver modificado es `IN OUT`.
+                    </div>
+                </div>
+            </div>
+
+            <!-- PREGUNTA 3 -->
+            <div class="qa-card">
+                <div class="qa-header">
+                    <span class="qa-number">Pregunta 3</span>
+                    <span class="qa-topic-tag">Slide s2_1_1: Parámetros IN como Constantes</span>
+                </div>
+                <div class="qa-question-text">
+                    ¿Qué error de compilación ocurre si intentas ejecutar la asignación `p_id := 10;` dentro de un procedimiento donde `p_id` fue declarado como `p_id IN NUMBER`?
+                </div>
+                <div class="options-display">
+                    <div class="option-item distractor">
+                        <i class="ph ph-circle"></i>
+                        <span>a) ORA-01403: No data found.</span>
+                    </div>
+                    <div class="option-item correct">
+                        <i class="ph-fill ph-check-circle"></i>
+                        <span>b) PLS-00363: expression cannot be used as an assignment target, porque los parámetros IN actúan como constantes de solo lectura.</span>
+                    </div>
+                    <div class="option-item distractor">
+                        <i class="ph ph-circle"></i>
+                        <span>c) ORA-06503: Function returned without value.</span>
+                    </div>
+                    <div class="option-item distractor">
+                        <i class="ph ph-circle"></i>
+                        <span>d) Ninguno, en Oracle 21c los parámetros IN pueden reasignarse dinámicamente.</span>
+                    </div>
+                </div>
+                <div class="profe-box">
+                    <div class="profe-box-title"><i class="ph ph-lightbulb"></i> Mi Explicación en Clases:</div>
+                    <div class="profe-box-content">
+                        <strong>Clave correcta: b.</strong> Les di el ejemplo del mozo en el restaurante: el mozo recibe el número de mesa (parámetro `IN`), lo lee para saber a dónde llevar el plato, pero <em>no tiene permitido cambiarle el número a la mesa</em>. En Oracle, un parámetro `IN` se comporta internamente como una constante. Intentar asignarle algo con `:=` gatilla el error de compilador `PLS-00363`.
+                    </div>
+                </div>
+            </div>
+
+            <!-- PREGUNTA 4 -->
+            <div class="qa-card">
+                <div class="qa-header">
+                    <span class="qa-number">Pregunta 4</span>
+                    <span class="qa-topic-tag">Slides s2_2_1 y s2_2_2: Timing BEFORE vs AFTER</span>
+                </div>
+                <div class="qa-question-text">
+                    En la arquitectura de Triggers de Oracle, ¿en qué caso es estrictamente OBLIGATORIO utilizar el timing BEFORE en lugar de AFTER?
+                </div>
+                <div class="options-display">
+                    <div class="option-item distractor">
+                        <i class="ph ph-circle"></i>
+                        <span>a) Cuando se necesita insertar una fila de auditoría en una tabla secundaria como LOG_CAMBIO_PRECIO.</span>
+                    </div>
+                    <div class="option-item correct">
+                        <i class="ph-fill ph-check-circle"></i>
+                        <span>b) Cuando se requiere modificar o limpiar los valores del pseudo-registro :NEW antes de que la fila se escriba definitivamente en disco.</span>
+                    </div>
+                    <div class="option-item distractor">
+                        <i class="ph ph-circle"></i>
+                        <span>c) Cuando se requiere que el trigger se ejecute únicamente al finalizar la transacción completa con COMMIT.</span>
+                    </div>
+                    <div class="option-item distractor">
+                        <i class="ph ph-circle"></i>
+                        <span>d) Cuando se desea evitar el error ORA-04091 de tablas mutantes en sentencias DELETE.</span>
+                    </div>
+                </div>
+                <div class="profe-box">
+                    <div class="profe-box-title"><i class="ph ph-lightbulb"></i> Mi Explicación en Clases:</div>
+                    <div class="profe-box-content">
+                        <strong>Clave correcta: b.</strong> La regla mnemotécnica que les enseñé: <em>Si vas a intervenir o sanitizar los datos (:NEW), tienes que llegar ANTES (BEFORE)</em>. Una vez que ocurrió el `AFTER`, la fila ya se escribió en los bloques de datos. Si intentas hacer `:NEW.precio := 1000` en un trigger `AFTER`, Oracle te frena con el error `ORA-04084: cannot change NEW values for this trigger type`.
+                    </div>
+                </div>
+            </div>
+
+            <!-- PREGUNTA 5 -->
+            <div class="qa-card">
+                <div class="qa-header">
+                    <span class="qa-number">Pregunta 5</span>
+                    <span class="qa-topic-tag">Slide s2_2_2: Pseudo-registros en DELETE</span>
+                </div>
+                <div class="qa-question-text">
+                    Durante la ejecución de una sentencia DELETE sobre una tabla con un trigger FOR EACH ROW, ¿cuál es el estado de los pseudo-registros :OLD y :NEW?
+                </div>
+                <div class="options-display">
+                    <div class="option-item correct">
+                        <i class="ph-fill ph-check-circle"></i>
+                        <span>a) :OLD contiene los datos de la fila que se está eliminando y :NEW es NULL.</span>
+                    </div>
+                    <div class="option-item distractor">
+                        <i class="ph ph-circle"></i>
+                        <span>b) :OLD es NULL y :NEW contiene los datos que se acaban de borrar.</span>
+                    </div>
+                    <div class="option-item distractor">
+                        <i class="ph ph-circle"></i>
+                        <span>c) Ambos contienen los datos de la fila eliminada para permitir la recuperación.</span>
+                    </div>
+                    <div class="option-item distractor">
+                        <i class="ph ph-circle"></i>
+                        <span>d) Ambos son NULL porque la fila ya no existe en el catálogo.</span>
+                    </div>
+                </div>
+                <div class="profe-box">
+                    <div class="profe-box-title"><i class="ph ph-lightbulb"></i> Mi Explicación en Clases:</div>
+                    <div class="profe-box-content">
+                        <strong>Clave correcta: a.</strong> Piensen con lógica temporal: `:OLD` es el pasado (lo que estaba en la base de datos). `:NEW` es el futuro (lo que quedará). Cuando tú borras una fila (`DELETE`), hay pasado (la fila que vas a matar), pero <em>no hay futuro</em> (`:NEW` es `NULL`). Y al revés: cuando insertas (`INSERT`), no hay pasado (`:OLD` es `NULL`), pero sí hay futuro (`:NEW`).
+                    </div>
+                </div>
+            </div>
+
+            <!-- PREGUNTA 6 -->
+            <div class="qa-card">
+                <div class="qa-header">
+                    <span class="qa-number">Pregunta 6</span>
+                    <span class="qa-topic-tag">Slide s2_2_2: Sintaxis de Cláusula WHEN</span>
+                </div>
+                <div class="qa-question-text">
+                    ¿Cuál es la sintaxis correcta al hacer referencia a los campos de la fila dentro de la cláusula WHEN de un trigger FOR EACH ROW?
+                </div>
+                <div class="options-display">
+                    <div class="option-item distractor">
+                        <i class="ph ph-circle"></i>
+                        <span>a) WHEN (:OLD.precio != :NEW.precio)</span>
+                    </div>
+                    <div class="option-item correct">
+                        <i class="ph-fill ph-check-circle"></i>
+                        <span>b) WHEN (OLD.precio != NEW.precio) — sin dos puntos (:)</span>
+                    </div>
+                    <div class="option-item distractor">
+                        <i class="ph ph-circle"></i>
+                        <span>c) WHEN {OLD.precio <> NEW.precio}</span>
+                    </div>
+                    <div class="option-item distractor">
+                        <i class="ph ph-circle"></i>
+                        <span>d) WHEN (NEW.precio IS NOT NULL AND :OLD.precio IS NOT NULL)</span>
+                    </div>
+                </div>
+                <div class="profe-box">
+                    <div class="profe-box-title"><i class="ph ph-lightbulb"></i> Mi Explicación en Clases:</div>
+                    <div class="profe-box-content">
+                        <strong>Clave correcta: b.</strong> Esta es la típica pregunta "cazabobos" de certificación Oracle que les advertí. Dentro de la cabecera del trigger en la cláusula `WHEN (condicion)` se usan `OLD` y `NEW` <strong>SIN DOS PUNTOS</strong>. En cambio, una vez que cruzas al cuerpo ejecutable entre `BEGIN ... END;`, ahí sí es obligatorio anteponerles los dos puntos: `:OLD.precio` y `:NEW.precio`.
+                    </div>
+                </div>
+            </div>
+
+            <!-- PREGUNTA 7 -->
+            <div class="qa-card">
+                <div class="qa-header">
+                    <span class="qa-number">Pregunta 7</span>
+                    <span class="qa-topic-tag">Slide s2_3_1: Arquitectura de Paquetes</span>
+                </div>
+                <div class="qa-question-text">
+                    ¿Por qué un paquete PL/SQL se compone obligatoriamente de Especificación (Package Specification) y Cuerpo (Package Body), y en qué orden deben compilarse?
+                </div>
+                <div class="options-display">
+                    <div class="option-item distractor">
+                        <i class="ph ph-circle"></i>
+                        <span>a) Primero el Cuerpo con toda la lógica y luego la Especificación para verificar los tipos de datos.</span>
+                    </div>
+                    <div class="option-item distractor">
+                        <i class="ph ph-circle"></i>
+                        <span>b) Se pueden compilar en cualquier orden indistintamente mediante un solo comando.</span>
+                    </div>
+                    <div class="option-item correct">
+                        <i class="ph-fill ph-check-circle"></i>
+                        <span>c) Primero la Especificación (declara la interfaz pública) y luego el Cuerpo (implementa el código); si cambia el cuerpo, no se requiere recompilar los programas clientes.</span>
+                    </div>
+                    <div class="option-item distractor">
+                        <i class="ph ph-circle"></i>
+                        <span>d) La Especificación solo es obligatoria si el paquete contiene triggers asociados.</span>
+                    </div>
+                </div>
+                <div class="profe-box">
+                    <div class="profe-box-title"><i class="ph ph-lightbulb"></i> Mi Explicación en Clases:</div>
+                    <div class="profe-box-content">
+                        <strong>Clave correcta: c.</strong> La metáfora del restaurante: la <em>Especificación es la carta del menú</em> (los platos que puedes pedir). El <em>Cuerpo es la cocina</em> (cómo se cocinan). Primero tienes que publicar la carta para que los clientes sepan qué pedir. Si mañana el chef cambia la receta adentro de la cocina (cuerpo), no tienes que reimprimir la carta ni hacer que los clientes cambien su pedido. Por eso, <strong>siempre se compila la Especificación primero</strong>.
+                    </div>
+                </div>
+            </div>
+
+            <!-- PREGUNTA 8 -->
+            <div class="qa-card">
+                <div class="qa-header">
+                    <span class="qa-number">Pregunta 8</span>
+                    <span class="qa-topic-tag">Slide s2_3_1: Variables de Paquete y Persistencia PGA</span>
+                </div>
+                <div class="qa-question-text">
+                    ¿Dónde reside y cuánto dura el valor almacenado en una variable pública declarada en la Especificación de un paquete (como `g_total_vendidas NUMBER := 0;`)?
+                </div>
+                <div class="options-display">
+                    <div class="option-item distractor">
+                        <i class="ph ph-circle"></i>
+                        <span>a) Se guarda en una tabla del diccionario de datos y persiste permanentemente para todos los usuarios.</span>
+                    </div>
+                    <div class="option-item distractor">
+                        <i class="ph ph-circle"></i>
+                        <span>b) Se destruye apenas finaliza el procedimiento o bloque que la modificó.</span>
+                    </div>
+                    <div class="option-item correct">
+                        <i class="ph-fill ph-check-circle"></i>
+                        <span>c) Reside en la memoria de la sesión (PGA) del usuario conectado y mantiene su valor durante toda su conexión.</span>
+                    </div>
+                    <div class="option-item distractor">
+                        <i class="ph ph-circle"></i>
+                        <span>d) Solo existe mientras se ejecute la transacción activa, reseteándose con cada COMMIT o ROLLBACK.</span>
+                    </div>
+                </div>
+                <div class="profe-box">
+                    <div class="profe-box-title"><i class="ph ph-lightbulb"></i> Mi Explicación en Clases:</div>
+                    <div class="profe-box-content">
+                        <strong>Clave correcta: c.</strong> Esta fue la gran magia del paquete que vimos con el turno de la boletería en Punto Ticket. En un procedimiento normal, las variables locales mueren en el `END;`. En un paquete, `g_total_vendidas` vive en la memoria de tu sesión (PGA). Si vendes 2 entradas a las 10:00 y 3 a las 14:00, la variable recuerda que van 5, ¡sin necesidad de haber creado ninguna tabla en el disco duro!
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================================================================= -->
+        <!-- SECCIÓN 2: SELECCIÓN MÚLTIPLE                                      -->
+        <!-- ================================================================= -->
+        <section id="sec-multiselect" class="section-card">
+            <div class="section-header">
+                <div class="section-header-content">
+                    <div class="section-header-icon"><i class="ph ph-check-square"></i></div>
+                    <div>
+                        <h2 class="section-title">Parte 2: Preguntas de Selección Múltiple (Checkboxes)</h2>
+                        <p class="section-desc">4 preguntas donde los alumnos debían identificar múltiples afirmaciones válidas.</p>
+                    </div>
+                </div>
+                <span class="section-weight-badge">12 Puntos (3 pts c/u)</span>
+            </div>
+
+            <!-- PREGUNTA 9 -->
+            <div class="qa-card">
+                <div class="qa-header">
+                    <span class="qa-number">Pregunta 9</span>
+                    <span class="qa-topic-tag">Slide s2_1_1: Buenas Prácticas y Errores en Funciones</span>
+                </div>
+                <div class="qa-question-text">
+                    ¿Cuáles de las siguientes afirmaciones sobre las funciones (FUNCTION) en Oracle PL/SQL son CORRECTAS? (Selecciona todas las que apliquen)
+                </div>
+                <div class="options-display">
+                    <div class="option-item correct">
+                        <i class="ph-fill ph-check-square"></i>
+                        <span>a) Si una función incluye sentencias DML (INSERT/UPDATE/DELETE), no podrá ser ejecutada dentro de una consulta SELECT simple (error ORA-14551).</span>
+                    </div>
+                    <div class="option-item correct">
+                        <i class="ph-fill ph-check-square"></i>
+                        <span>b) Si el flujo de ejecución de una función alcanza el END sin toparse con una sentencia RETURN, Oracle arroja en tiempo de ejecución el error ORA-06503.</span>
+                    </div>
+                    <div class="option-item correct">
+                        <i class="ph-fill ph-check-square"></i>
+                        <span>c) Aunque Oracle permite compilar funciones con parámetros OUT, se considera una mala práctica porque inhabilita su uso directo en sentencias SELECT.</span>
+                    </div>
+                    <div class="option-item distractor">
+                        <i class="ph ph-square"></i>
+                        <span>d) Las funciones almacenadas son idénticas a los triggers ya que ambas se disparan automáticamente ante un cambio en la base de datos.</span>
+                    </div>
+                </div>
+                <div class="profe-box">
+                    <div class="profe-box-title"><i class="ph ph-lightbulb"></i> Análisis Docente:</div>
+                    <div class="profe-box-content">
+                        <strong>Opciones correctas: a, b, c.</strong><br>
+                        - La <strong>a</strong> es la famosa restricción de pureza: si haces DML en una función llamada desde SELECT, rompes el principio de consulta idempotente (`ORA-14551`).<br>
+                        - La <strong>b</strong> es el temido `ORA-06503: Function returned without value`, muy común cuando los estudiantes olvidan poner `RETURN` dentro de la sección `EXCEPTION`.<br>
+                        - La <strong>c</strong> fue la pregunta que me hicieron en clases: ¿Se puede poner OUT en funciones? Sí compila, pero ¿cómo pondrías `SELECT fn(id, ???) FROM DUAL`? No se puede. Destruyes su ventaja principal.<br>
+                        - La <strong>d</strong> es totalmente falsa: las funciones requieren invocación explícita, los triggers son automáticos.
+                    </div>
+                </div>
+            </div>
+
+            <!-- PREGUNTA 10 -->
+            <div class="qa-card">
+                <div class="qa-header">
+                    <span class="qa-number">Pregunta 10</span>
+                    <span class="qa-topic-tag">Slide s2_2_1: Limitaciones de Herramientas Tradicionales vs Triggers</span>
+                </div>
+                <div class="qa-question-text">
+                    En la problemática de Punto Ticket (slide s2_2_1), ¿por qué mecanismos tradicionales como DEFAULT, CHECK CONSTRAINTS o Procedimientos Almacenados NO fueron suficientes por sí solos frente a un Trigger? (Selecciona todas las que apliquen)
+                </div>
+                <div class="options-display">
+                    <div class="option-item correct">
+                        <i class="ph-fill ph-check-square"></i>
+                        <span>a) La cláusula DEFAULT solo actúa si la columna viene vacía (NULL); si el usuario envía un texto con mayúsculas y espacios desordenados, DEFAULT no hace nada.</span>
+                    </div>
+                    <div class="option-item correct">
+                        <i class="ph-fill ph-check-square"></i>
+                        <span>b) Una CHECK CONSTRAINT se limita a rechazar la fila con un mensaje de error y botar la compra, en lugar de corregir o normalizar el dato automáticamente en el aire.</span>
+                    </div>
+                    <div class="option-item correct">
+                        <i class="ph-fill ph-check-square"></i>
+                        <span>c) Un procedimiento almacenado funciona bien solo si todos lo usan, pero puede ser evadido por completo si un administrador o script batch ejecuta un INSERT directo en la base de datos.</span>
+                    </div>
+                    <div class="option-item distractor">
+                        <i class="ph ph-square"></i>
+                        <span>d) Los triggers consumen más memoria RAM que las tablas temporales y por eso Oracle los desactiva automáticamente en horarios punta.</span>
+                    </div>
+                </div>
+                <div class="profe-box">
+                    <div class="profe-box-title"><i class="ph ph-lightbulb"></i> Análisis Docente (La diapositiva del dolor en Punto Ticket):</div>
+                    <div class="profe-box-content">
+                        <strong>Opciones correctas: a, b, c.</strong> En la diapositiva analizamos caso a caso: si le ponías `CHECK (email = LOWER(email))`, al cliente de la app móvil le salía un error rojo feo y se iba frustrado sin comprar la entrada. Si hacías un procedimiento `sp_insertar_cliente`, el DBA que abría DBeaver se lo saltaba insertando directo con SQL. El trigger es el único "guardia invisible" pegado a la tabla que actúa siempre, sin importar quién dispare la sentencia.
+                    </div>
+                </div>
+            </div>
+
+            <!-- PREGUNTA 11 -->
+            <div class="qa-card">
+                <div class="qa-header">
+                    <span class="qa-number">Pregunta 11</span>
+                    <span class="qa-topic-tag">Slide s2_2_2: Row-Level vs Statement-Level</span>
+                </div>
+                <div class="qa-question-text">
+                    Respecto a la diferencia entre triggers a nivel de fila (FOR EACH ROW) y a nivel de sentencia (Statement-Level), selecciona las afirmaciones VERDADERAS:
+                </div>
+                <div class="options-display">
+                    <div class="option-item correct">
+                        <i class="ph-fill ph-check-square"></i>
+                        <span>a) Un trigger Statement-Level (sin FOR EACH ROW) se ejecuta una única vez por instrucción DML, sin importar si la sentencia afectó 0, 1 o 10.000 filas.</span>
+                    </div>
+                    <div class="option-item correct">
+                        <i class="ph-fill ph-check-square"></i>
+                        <span>b) Solo los triggers FOR EACH ROW tienen acceso a los pseudo-registros :OLD y :NEW.</span>
+                    </div>
+                    <div class="option-item distractor">
+                        <i class="ph ph-square"></i>
+                        <span>c) Un trigger Statement-Level puede modificar los valores de :NEW para cada una de las filas actualizadas masivamente.</span>
+                    </div>
+                    <div class="option-item correct">
+                        <i class="ph-fill ph-check-square"></i>
+                        <span>d) Si un UPDATE actualiza 50 localidades, un trigger AFTER UPDATE ... FOR EACH ROW se ejecutará exactamente 50 veces.</span>
+                    </div>
+                </div>
+                <div class="profe-box">
+                    <div class="profe-box-title"><i class="ph ph-lightbulb"></i> Análisis Docente:</div>
+                    <div class="profe-box-content">
+                        <strong>Opciones correctas: a, b, d.</strong> La opción `c` es el error garrafal: en un trigger Statement-Level no existe el concepto de "fila actual", por lo que Oracle ni siquiera te deja compilar referencias a `:OLD` o `:NEW`. Si quieres intervenir valores fila a fila o auditar cambios individuales, el `FOR EACH ROW` es estrictamente mandatorio.
+                    </div>
+                </div>
+            </div>
+
+            <!-- PREGUNTA 12 -->
+            <div class="qa-card">
+                <div class="qa-header">
+                    <span class="qa-number">Pregunta 12</span>
+                    <span class="qa-topic-tag">Slide s2_3_1: Beneficios de la Arquitectura de Paquetes</span>
+                </div>
+                <div class="qa-question-text">
+                    ¿Cuáles de los siguientes beneficios arquitectónicos se obtienen al agrupar funciones y procedimientos en un Package (Paquete)?
+                </div>
+                <div class="options-display">
+                    <div class="option-item correct">
+                        <i class="ph-fill ph-check-square"></i>
+                        <span>a) Organización y encapsulamiento: agrupa objetos lógicamente relacionados en un único contenedor ordenado.</span>
+                    </div>
+                    <div class="option-item correct">
+                        <i class="ph-fill ph-check-square"></i>
+                        <span>b) Reutilización interna: un procedimiento dentro del cuerpo puede invocar directamente funciones del mismo paquete sin prefijos adicionales.</span>
+                    </div>
+                    <div class="option-item correct">
+                        <i class="ph-fill ph-check-square"></i>
+                        <span>c) Estado persistente de sesión: permite almacenar variables compartidas que mantienen su valor mientras dure la conexión del cliente.</span>
+                    </div>
+                    <div class="option-item distractor">
+                        <i class="ph ph-square"></i>
+                        <span>d) Desaparición del bloque BEGIN...END en los procedimientos del cuerpo.</span>
+                    </div>
+                </div>
+                <div class="profe-box">
+                    <div class="profe-box-title"><i class="ph ph-lightbulb"></i> Análisis Docente:</div>
+                    <div class="profe-box-content">
+                        <strong>Opciones correctas: a, b, c.</strong> Estas son las tres grandes razones por las que en la industria nadie programa funciones y procedimientos sueltos. Todo va empaquetado por módulos de negocio (ej: `pkg_boleteria`, `pkg_ventas`, `pkg_clientes`). La opción `d` es falsa porque dentro del cuerpo cada rutina sigue requiriendo su bloque ejecutable `BEGIN ... END;`.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================================================================= -->
+        <!-- SECCIÓN 3: TÉRMINOS PAREADOS                                       -->
+        <!-- ================================================================= -->
+        <section id="sec-matching" class="section-card">
+            <div class="section-header">
+                <div class="section-header-content">
+                    <div class="section-header-icon"><i class="ph ph-arrows-split"></i></div>
+                    <div>
+                        <h2 class="section-title">Parte 3: Términos Pareados (Matching de Conceptos)</h2>
+                        <p class="section-desc">Asociación unívoca entre términos técnicos fundamentales y sus definiciones precisas.</p>
+                    </div>
+                </div>
+                <span class="section-weight-badge">12 Puntos (2 pts c/u)</span>
+            </div>
+
+            <table class="pauta-table">
+                <thead>
+                    <tr>
+                        <th style="width: 25%;">Término Técnico</th>
+                        <th style="width: 50%;">Definición Correcta Oficial</th>
+                        <th style="width: 25%;">Consejo / Clave Docente</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Parámetro IN OUT</strong></td>
+                        <td class="correct-cell">Permite leer el valor entrante del invocante y a la vez devolverlo modificado al finalizar la ejecución.</td>
+                        <td>Es bidireccional. Entra con datos y sale con datos en la misma variable.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Pseudo-registro :OLD</strong></td>
+                        <td class="correct-cell">Contiene la fotografía del registro antes de la modificación; en sentencias INSERT su valor es NULL.</td>
+                        <td>Representa el estado anterior de la fila en la tabla.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Timing BEFORE</strong></td>
+                        <td class="correct-cell">Momento de disparo ideal para interceptar, validar o normalizar valores en :NEW antes de tocar el disco.</td>
+                        <td>El centinela que actúa antes de que se consume la grabación física.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Timing AFTER</strong></td>
+                        <td class="correct-cell">Momento de disparo ideal para auditorías y bitácoras de cambios ya consumados en tablas secundarias.</td>
+                        <td>La cámara de seguridad: registra lo que ya ocurrió sin alterar el dato original.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Especificación del Paquete</strong></td>
+                        <td class="correct-cell">Actúa como la "carta del menú": declara públicamente los nombres de variables, funciones y procedimientos disponibles.</td>
+                        <td>Contiene solo cabeceras y firmas. No tiene lógica ni bloques `BEGIN`.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>RAISE_APPLICATION_ERROR</strong></td>
+                        <td class="correct-cell">Procedimiento de Oracle para emitir excepciones personalizadas con códigos numéricos obligatorios entre -20000 y -20999.</td>
+                        <td>Cualquier código fuera de ese rango arroja error de compilador de Oracle.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- ================================================================= -->
+        <!-- SECCIÓN 4: VERDADERO O FALSO CON JUSTIFICACIÓN                     -->
+        <!-- ================================================================= -->
+        <section id="sec-verdadero-falso" class="section-card">
+            <div class="section-header">
+                <div class="section-header-content">
+                    <div class="section-header-icon"><i class="ph ph-chat-circle-dots"></i></div>
+                    <div>
+                        <h2 class="section-title">Parte 4: Verdadero o Falso con Justificación Obligatoria</h2>
+                        <p class="section-desc">6 afirmaciones críticas donde la justificación técnica constituye el 66% del puntaje.</p>
+                    </div>
+                </div>
+                <span class="section-weight-badge">18 Puntos (3 pts c/u: 1 pt valor + 2 pts justificación)</span>
+            </div>
+
+            <!-- TF 14 -->
+            <div class="qa-card">
+                <div class="qa-header">
+                    <span class="qa-number">Ítem 14</span>
+                    <span class="qa-topic-tag">Paso de Parámetros OUT</span>
+                </div>
+                <div class="qa-question-text">
+                    "Al invocar un procedimiento que tiene un parámetro OUT, es perfectamente válido pasar un literal directo como argumento, por ejemplo: `obtener_datos_cliente(1, 'Juan', 'j@mail.com');`."
+                </div>
+                <p><strong>Valor Oficial:</strong> <span class="badge-pill" style="background:#fee2e2; color:#b91c1c; font-weight:700;">FALSO</span></p>
+                <div class="profe-box">
+                    <div class="profe-box-title"><i class="ph ph-check-circle"></i> Justificación Técnica Esperada por el Docente:</div>
+                    <div class="profe-box-content">
+                        <em>"Es FALSO porque un parámetro `OUT` (o `IN OUT`) necesita obligatoriamente una <strong>variable declarada en memoria</strong> para poder alojar el valor devuelto por el procedimiento al terminar. Pasar un valor literal fijo como `'Juan'` no tiene dirección de memoria reasignable y provoca un error inmediato de compilación en el invocante."</em>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TF 15 -->
+            <div class="qa-card">
+                <div class="qa-header">
+                    <span class="qa-number">Ítem 15</span>
+                    <span class="qa-topic-tag">Funciones con DML en Consultas SQL</span>
+                </div>
+                <div class="qa-question-text">
+                    "Una función PL/SQL que ejecuta una instrucción `UPDATE` o `INSERT` dentro de su cuerpo puede ser invocada sin problemas dentro de una cláusula `SELECT ... FROM ...;`."
+                </div>
+                <p><strong>Valor Oficial:</strong> <span class="badge-pill" style="background:#fee2e2; color:#b91c1c; font-weight:700;">FALSO</span></p>
+                <div class="profe-box">
+                    <div class="profe-box-title"><i class="ph ph-check-circle"></i> Justificación Técnica Esperada por el Docente:</div>
+                    <div class="profe-box-content">
+                        <em>"Es FALSO. En Oracle existe una restricción de pureza estricta: si una función realiza operaciones DML que alteran el estado de las tablas (`INSERT`, `UPDATE`, `DELETE`) y se invoca desde una consulta `SELECT`, el motor aborta la ejecución con el error <strong>ORA-14551: cannot perform a DML operation inside a query</strong>. Las funciones para consultas deben ser de solo lectura."</em>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TF 16 -->
+            <div class="qa-card">
+                <div class="qa-header">
+                    <span class="qa-number">Ítem 16</span>
+                    <span class="qa-topic-tag">Modificación de :NEW en Triggers AFTER</span>
+                </div>
+                <div class="qa-question-text">
+                    "En un trigger `AFTER UPDATE ... FOR EACH ROW`, el desarrollador puede escribir la instrucción `:NEW.precio := 50000;` para forzar un precio mínimo antes de que se grabe la fila."
+                </div>
+                <p><strong>Valor Oficial:</strong> <span class="badge-pill" style="background:#fee2e2; color:#b91c1c; font-weight:700;">FALSO</span></p>
+                <div class="profe-box">
+                    <div class="profe-box-title"><i class="ph ph-check-circle"></i> Justificación Técnica Esperada por el Docente:</div>
+                    <div class="profe-box-content">
+                        <em>"Es FALSO. Cuando se dispara un trigger con timing `AFTER`, la fila ya fue escrita y confirmada en la tabla. Intentar modificar `:NEW` en un trigger posterior genera el error de Oracle <strong>ORA-04084: cannot change NEW values for this trigger type</strong>. La alteración de valores solo es válida en triggers con timing `BEFORE`."</em>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TF 17 -->
+            <div class="qa-card">
+                <div class="qa-header">
+                    <span class="qa-number">Ítem 17</span>
+                    <span class="qa-topic-tag">Dependencias de Compilación en Paquetes</span>
+                </div>
+                <div class="qa-question-text">
+                    "En la arquitectura de paquetes de Oracle, siempre es obligatorio compilar primero la Especificación (`CREATE PACKAGE`) y posteriormente compilar el Cuerpo (`CREATE PACKAGE BODY`)."
+                </div>
+                <p><strong>Valor Oficial:</strong> <span class="badge-pill" style="background:#dcfce7; color:#15803d; font-weight:700;">VERDADERO</span></p>
+                <div class="profe-box">
+                    <div class="profe-box-title"><i class="ph ph-check-circle"></i> Justificación Técnica Esperada por el Docente:</div>
+                    <div class="profe-box-content">
+                        <em>"Es VERDADERO. La Especificación define la interfaz pública, los contratos de las funciones y las variables globales. El Cuerpo depende estructuralmente de la Especificación para validar que las firmas implementadas coincidan exactamente. Si intentas compilar el cuerpo antes de que exista la especificación en el diccionario de datos, Oracle arroja un error de objeto padre inexistente."</em>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TF 18 -->
+            <div class="qa-card">
+                <div class="qa-header">
+                    <span class="qa-number">Ítem 18</span>
+                    <span class="qa-topic-tag">Naturaleza de Invocación de Triggers</span>
+                </div>
+                <div class="qa-question-text">
+                    "Los triggers pueden ser invocados manualmente desde un bloque anónimo usando la sintaxis `EXECUTE nombre_trigger;` cuando el administrador requiera forzar su ejecución."
+                </div>
+                <p><strong>Valor Oficial:</strong> <span class="badge-pill" style="background:#fee2e2; color:#b91c1c; font-weight:700;">FALSO</span></p>
+                <div class="profe-box">
+                    <div class="profe-box-title"><i class="ph ph-check-circle"></i> Justificación Técnica Esperada por el Docente:</div>
+                    <div class="profe-box-content">
+                        <em>"Es FALSO. Los triggers son objetos reactivos implícitos: <strong>nadie puede llamarlos de forma directa</strong> ni existe la sentencia `EXECUTE` para ellos. Su ejecución es 100% controlada por el motor de base de datos en respuesta al evento DML configurado (`INSERT`, `UPDATE`, `DELETE`) sobre la tabla asociada."</em>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TF 19 -->
+            <div class="qa-card">
+                <div class="qa-header">
+                    <span class="qa-number">Ítem 19</span>
+                    <span class="qa-topic-tag">Alcance y Aislamiento de Memoria de Sesión (PGA)</span>
+                </div>
+                <div class="qa-question-text">
+                    "Si el usuario A modifica una variable pública de paquete (por ejemplo `pkg_boleteria.g_total_vendidas := 10;`), el usuario B conectado en otra sesión diferente verá inmediatamente el valor 10 reflejado en su pantalla."
+                </div>
+                <p><strong>Valor Oficial:</strong> <span class="badge-pill" style="background:#fee2e2; color:#b91c1c; font-weight:700;">FALSO</span></p>
+                <div class="profe-box">
+                    <div class="profe-box-title"><i class="ph ph-check-circle"></i> Justificación Técnica Esperada por el Docente:</div>
+                    <div class="profe-box-content">
+                        <em>"Es FALSO. Las variables de paquete tienen <strong>alcance de sesión</strong> y residen en la memoria privada de cada conexión (PGA - Program Global Area). Cada usuario conectado posee su propia instancia aislada e independiente de las variables de paquete. Las modificaciones de un cajero jamás afectan o sobreescriben la memoria del cajero de al lado."</em>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================================================================= -->
+        <!-- SECCIÓN 5: COMPLETAR CÓDIGO (6 EJERCICIOS)                         -->
+        <!-- ================================================================= -->
+        <section id="sec-codigo" class="section-card">
+            <div class="section-header">
+                <div class="section-header-content">
+                    <div class="section-header-icon"><i class="ph ph-code"></i></div>
+                    <div>
+                        <h2 class="section-title">Parte 5: Bloques de Código Completados con Pool de Opciones</h2>
+                        <p class="section-desc">6 ejercicios con código fuente completamente resuelto, resaltando los espacios en blanco completados.</p>
+                    </div>
+                </div>
+                <span class="section-weight-badge">18 Puntos (3 pts c/u)</span>
+            </div>
+
+            <!-- EJERCICIO 1 -->
+            <div class="qa-card">
+                <div class="qa-header">
+                    <span class="qa-number">Ejercicio 1</span>
+                    <span class="qa-topic-tag">Función Almacenada con Excepción (s2_1_1)</span>
+                </div>
+                <div class="qa-question-text">
+                    Función `calcular_descuento`: calcula el descuento del cliente según su convenio bancario activo y maneja la ausencia de datos.
+                </div>
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-title"><i class="ph ph-file-code"></i> calcular_descuento.sql (Solución Oficial)</span>
+                        <button class="code-copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-container').querySelector('pre').innerText)"><i class="ph ph-copy"></i> Copiar</button>
+                    </div>
+                    <pre class="code-body"><span class="kw">CREATE OR REPLACE FUNCTION</span> <span class="fn">calcular_descuento</span>(
+    p_monto_bruto  <span class="hl-blank">IN NUMBER</span>,             <span class="cm">-- [BLANK_1]: Parámetro de entrada de solo lectura</span>
+    p_convenio_id  <span class="kw">IN NUMBER</span>
+) <span class="hl-blank">RETURN NUMBER</span>                           <span class="cm">-- [BLANK_2]: Declara el tipo de dato que retorna</span>
+<span class="kw">AS</span>
+    v_porcentaje <span class="kw">NUMBER</span>;
+    v_descuento  <span class="kw">NUMBER</span>;
+<span class="kw">BEGIN</span>
+    <span class="kw">SELECT</span> descuento_porcentaje
+    <span class="hl-blank">INTO</span> v_porcentaje                     <span class="cm">-- [BLANK_3]: Asigna la columna a la variable</span>
+    <span class="kw">FROM</span> CONVENIO_BANCO
+    <span class="kw">WHERE</span> convenio_banco_id = p_convenio_id
+      <span class="kw">AND</span> activo = <span class="str">'S'</span>;
+
+    v_descuento := <span class="fn">ROUND</span>(p_monto_bruto * v_porcentaje / <span class="num">100</span>, <span class="num">2</span>);
+    <span class="hl-blank">RETURN v_descuento</span>;                   <span class="cm">-- [BLANK_4]: Retorno mandatorio del resultado</span>
+<span class="kw">EXCEPTION</span>
+    <span class="kw">WHEN</span> NO_DATA_FOUND <span class="kw">THEN</span>
+        <span class="hl-blank">RETURN 0</span>;                         <span class="cm">-- [BLANK_5]: Si no hay convenio, el descuento es $0</span>
+<span class="kw">END</span> calcular_descuento;</pre>
+                </div>
+                <table class="pauta-table">
+                    <thead><tr><th>Espacio</th><th>Opción Correcta</th><th>Por qué esta opción y no los distractores</th></tr></thead>
+                    <tbody>
+                        <tr><td><code>[BLANK_1]</code></td><td class="correct-cell">IN NUMBER</td><td>El monto es de solo lectura. No puede ser `OUT` ni `RETURNS`.</td></tr>
+                        <tr><td><code>[BLANK_2]</code></td><td class="correct-cell">RETURN NUMBER</td><td>En la firma se usa `RETURN tipo`, sin punto y coma y sin la 'S' de `RETURNS`.</td></tr>
+                        <tr><td><code>[BLANK_3]</code></td><td class="correct-cell">INTO</td><td>Es la sintaxis nativa de SQL en PL/SQL para depositar el valor en una variable.</td></tr>
+                        <tr><td><code>[BLANK_4]</code></td><td class="correct-cell">RETURN v_descuento</td><td>Toda función debe retornar el valor calculado antes de terminar.</td></tr>
+                        <tr><td><code>[BLANK_5]</code></td><td class="correct-cell">RETURN 0</td><td>Si la consulta no encuentra el banco, debe retornar un descuento neutro ($0).</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- EJERCICIO 2 -->
+            <div class="qa-card">
+                <div class="qa-header">
+                    <span class="qa-number">Ejercicio 2</span>
+                    <span class="qa-topic-tag">Procedimiento con Parámetros Mixtos (s2_1_1)</span>
+                </div>
+                <div class="qa-question-text">
+                    Procedimiento `ajustar_tarifa_localidad`: actualiza precios y utiliza parámetros de entrada, salida y bidireccionales.
+                </div>
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-title"><i class="ph ph-file-code"></i> ajustar_tarifa_localidad.sql (Solución Oficial)</span>
+                        <button class="code-copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-container').querySelector('pre').innerText)"><i class="ph ph-copy"></i> Copiar</button>
+                    </div>
+                    <pre class="code-body"><span class="kw">CREATE OR REPLACE PROCEDURE</span> ajustar_tarifa_localidad(
+    p_localidad_id     <span class="kw">IN</span>     <span class="kw">NUMBER</span>,
+    p_precio_ajustado  <span class="hl-blank">IN OUT NUMBER</span>,     <span class="cm">-- [BLANK_1]: Entra con valor propuesto y sale confirmado</span>
+    p_nombre_localidad <span class="hl-blank">OUT VARCHAR2</span>       <span class="cm">-- [BLANK_2]: Sale con el nombre para el invocante</span>
+) <span class="hl-blank">AS</span>                                      <span class="cm">-- [BLANK_3]: Separa cabecera de declaraciones locales</span>
+    v_nombre <span class="kw">VARCHAR2</span>(<span class="num">100</span>);
+<span class="kw">BEGIN</span>
+    <span class="kw">SELECT</span> nombre_localidad
+    <span class="kw">INTO</span> v_nombre
+    <span class="kw">FROM</span> LOCALIDAD_EVENTO
+    <span class="kw">WHERE</span> localidad_evento_id = p_localidad_id;
+
+    <span class="kw">UPDATE</span> LOCALIDAD_EVENTO
+    <span class="kw">SET</span> precio = p_precio_ajustado
+    <span class="kw">WHERE</span> localidad_evento_id = p_localidad_id;
+
+    <span class="hl-blank">p_nombre_localidad</span> := v_nombre;        <span class="cm">-- [BLANK_4]: Asigna al parámetro de salida</span>
+<span class="kw">EXCEPTION</span>
+    <span class="kw">WHEN</span> NO_DATA_FOUND <span class="kw">THEN</span>
+        <span class="hl-blank">RAISE_APPLICATION_ERROR</span>(<span class="num">-20002</span>, <span class="str">'Localidad no encontrada'</span>); <span class="cm">-- [BLANK_5]</span>
+<span class="kw">END</span> ajustar_tarifa_localidad;</pre>
+                </div>
+                <table class="pauta-table">
+                    <thead><tr><th>Espacio</th><th>Opción Correcta</th><th>Por qué esta opción y no los distractores</th></tr></thead>
+                    <tbody>
+                        <tr><td><code>[BLANK_1]</code></td><td class="correct-cell">IN OUT NUMBER</td><td>El precio entra con el valor a modificar y se confirma hacia afuera.</td></tr>
+                        <tr><td><code>[BLANK_2]</code></td><td class="correct-cell">OUT VARCHAR2</td><td>Comienza en NULL y sale con el nombre de la localidad rescatada de la tabla.</td></tr>
+                        <tr><td><code>[BLANK_3]</code></td><td class="correct-cell">AS</td><td>En procedimientos se usa `AS` o `IS` (no se usa la palabra `DECLARE`).</td></tr>
+                        <tr><td><code>[BLANK_4]</code></td><td class="correct-cell">p_nombre_localidad</td><td>Identificador del parámetro OUT al que se le carga el valor final.</td></tr>
+                        <tr><td><code>[BLANK_5]</code></td><td class="correct-cell">RAISE_APPLICATION_ERROR</td><td>Procedimiento oficial de Oracle para emitir errores con código -20002.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- EJERCICIO 3 -->
+            <div class="qa-card">
+                <div class="qa-header">
+                    <span class="qa-number">Ejercicio 3</span>
+                    <span class="qa-topic-tag">Trigger BEFORE para Normalización en Vuelo (s2_2_1)</span>
+                </div>
+                <div class="qa-question-text">
+                    Trigger `trg_cliente_limpiar_datos`: intercepta la inserción/modificación de clientes y limpia en vuelo correos y nombres.
+                </div>
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-title"><i class="ph ph-file-code"></i> trg_cliente_limpiar_datos.sql (Solución Oficial)</span>
+                        <button class="code-copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-container').querySelector('pre').innerText)"><i class="ph ph-copy"></i> Copiar</button>
+                    </div>
+                    <pre class="code-body"><span class="kw">CREATE OR REPLACE TRIGGER</span> trg_cliente_limpiar_datos
+<span class="hl-blank">BEFORE INSERT OR UPDATE</span> <span class="kw">ON</span> CLIENTE        <span class="cm">-- [BLANK_1]: Intercepta antes de grabar en disco</span>
+<span class="hl-blank">FOR EACH ROW</span>                              <span class="cm">-- [BLANK_2]: Se ejecuta por cada cliente afectado</span>
+<span class="kw">BEGIN</span>
+    <span class="cm">-- 1. Forzar email en minúsculas y sin espacios accidentales</span>
+    <span class="hl-blank">:NEW.email</span> := <span class="fn">LOWER</span>(<span class="fn">TRIM</span>(<span class="kw">:NEW</span>.email)); <span class="cm">-- [BLANK_3]: Destino es el pseudo-registro nuevo</span>
+
+    <span class="cm">-- 2. Asegurar que nombre y apellido inicien con mayúscula</span>
+    <span class="kw">:NEW</span>.nombre   := <span class="hl-blank">INITCAP</span>(<span class="fn">TRIM</span>(<span class="kw">:NEW</span>.nombre));   <span class="cm">-- [BLANK_4]: Formato Capital</span>
+    <span class="kw">:NEW</span>.apellido := <span class="hl-blank">INITCAP</span>(<span class="fn">TRIM</span>(<span class="kw">:NEW</span>.apellido));
+<span class="kw">END</span> trg_cliente_limpiar_datos;</pre>
+                </div>
+                <table class="pauta-table">
+                    <thead><tr><th>Espacio</th><th>Opción Correcta</th><th>Por qué esta opción y no los distractores</th></tr></thead>
+                    <tbody>
+                        <tr><td><code>[BLANK_1]</code></td><td class="correct-cell">BEFORE INSERT OR UPDATE</td><td>Debe actuar tanto al registrarse como al actualizar perfil, antes de escribir.</td></tr>
+                        <tr><td><code>[BLANK_2]</code></td><td class="correct-cell">FOR EACH ROW</td><td>Indispensable para acceder a los datos individuales de cada fila con `:NEW`.</td></tr>
+                        <tr><td><code>[BLANK_3]</code></td><td class="correct-cell">:NEW.email</td><td>Se modifica el registro en vuelo con dos puntos (`:NEW.email := ...`).</td></tr>
+                        <tr><td><code>[BLANK_4]</code></td><td class="correct-cell">INITCAP</td><td>Función nativa SQL que convierte la primera letra en mayúscula (ej: Juan).</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- EJERCICIO 4 -->
+            <div class="qa-card">
+                <div class="qa-header">
+                    <span class="qa-number">Ejercicio 4</span>
+                    <span class="qa-topic-tag">Trigger AFTER con UPDATE OF y Cláusula WHEN (s2_2_2)</span>
+                </div>
+                <div class="qa-question-text">
+                    Trigger `trg_auditoria_precio`: registra en una bitácora el precio anterior y nuevo solo cuando el precio realmente cambia.
+                </div>
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-title"><i class="ph ph-file-code"></i> trg_auditoria_precio.sql (Solución Oficial)</span>
+                        <button class="code-copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-container').querySelector('pre').innerText)"><i class="ph ph-copy"></i> Copiar</button>
+                    </div>
+                    <pre class="code-body"><span class="kw">CREATE OR REPLACE TRIGGER</span> trg_auditoria_precio
+<span class="hl-blank">AFTER UPDATE OF precio</span> <span class="kw">ON</span> LOCALIDAD_EVENTO <span class="cm">-- [BLANK_1]: Solo cuando se toca la columna precio</span>
+<span class="kw">FOR EACH ROW</span>
+<span class="kw">WHEN</span> (<span class="hl-blank">OLD.precio != NEW.precio</span>)           <span class="cm">-- [BLANK_2]: Sin dos puntos dentro de WHEN</span>
+<span class="kw">BEGIN</span>
+    <span class="kw">INSERT INTO</span> LOG_CAMBIO_PRECIO (
+        localidad_evento_id,
+        precio_anterior,
+        precio_nuevo,
+        fecha_cambio
+    ) <span class="kw">VALUES</span> (
+        <span class="kw">:OLD</span>.localidad_evento_id,
+        <span class="hl-blank">:OLD.precio</span>,                      <span class="cm">-- [BLANK_3]: Foto anterior en el cuerpo con ':'</span>
+        <span class="hl-blank">:NEW.precio</span>,                      <span class="cm">-- [BLANK_4]: Foto nueva en el cuerpo con ':'</span>
+        SYSTIMESTAMP
+    );
+<span class="kw">END</span> trg_auditoria_precio;</pre>
+                </div>
+                <table class="pauta-table">
+                    <thead><tr><th>Espacio</th><th>Opción Correcta</th><th>Por qué esta opción y no los distractores</th></tr></thead>
+                    <tbody>
+                        <tr><td><code>[BLANK_1]</code></td><td class="correct-cell">AFTER UPDATE OF precio</td><td>Acota el disparo solo a cambios en la columna precio después de aplicarse.</td></tr>
+                        <tr><td><code>[BLANK_2]</code></td><td class="correct-cell">OLD.precio != NEW.precio</td><td>En la cláusula WHEN se usan `OLD` y `NEW` estrictamente <strong>sin dos puntos</strong>.</td></tr>
+                        <tr><td><code>[BLANK_3]</code></td><td class="correct-cell">:OLD.precio</td><td>Dentro del `BEGIN ... END;` sí lleva dos puntos para referenciar el valor previo.</td></tr>
+                        <tr><td><code>[BLANK_4]</code></td><td class="correct-cell">:NEW.precio</td><td>Lleva dos puntos para referenciar el valor nuevo grabado.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- EJERCICIO 5 -->
+            <div class="qa-card">
+                <div class="qa-header">
+                    <span class="qa-number">Ejercicio 5</span>
+                    <span class="qa-topic-tag">Especificación de Paquete (s2_3_1)</span>
+                </div>
+                <div class="qa-question-text">
+                    Especificación de `pkg_boleteria`: publica la interfaz, variable global de turno y firmas de funciones y procedimientos.
+                </div>
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-title"><i class="ph ph-file-code"></i> pkg_boleteria_spec.sql (Solución Oficial)</span>
+                        <button class="code-copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-container').querySelector('pre').innerText)"><i class="ph ph-copy"></i> Copiar</button>
+                    </div>
+                    <pre class="code-body"><span class="hl-blank">CREATE OR REPLACE PACKAGE</span> pkg_boleteria <span class="kw">AS</span> <span class="cm">-- [BLANK_1]: DDL para la especificación</span>
+    <span class="cm">-- 1. Variable de paquete (memoria de sesión para el cajero)</span>
+    <span class="hl-blank">g_total_vendidas</span> <span class="kw">NUMBER</span> := <span class="num">0</span>;          <span class="cm">-- [BLANK_2]: Variable pública persistente</span>
+
+    <span class="cm">-- 2. Firma pública de la función para consultar stock</span>
+    <span class="kw">FUNCTION</span> consultar_stock(p_localidad_id <span class="kw">IN NUMBER</span>)
+    <span class="hl-blank">RETURN NUMBER</span>;                         <span class="cm">-- [BLANK_3]: Cabecera sin cuerpo ejecutable</span>
+
+    <span class="cm">-- 3. Firma pública del procedimiento para vender entradas</span>
+    <span class="kw">PROCEDURE</span> vender_entradas(
+        p_localidad_id <span class="kw">IN NUMBER</span>,
+        p_cantidad     <span class="kw">IN NUMBER</span>
+    );
+<span class="kw">END</span> pkg_boleteria;</pre>
+                </div>
+                <table class="pauta-table">
+                    <thead><tr><th>Espacio</th><th>Opción Correcta</th><th>Por qué esta opción y no los distractores</th></tr></thead>
+                    <tbody>
+                        <tr><td><code>[BLANK_1]</code></td><td class="correct-cell">CREATE OR REPLACE PACKAGE</td><td>Comando para crear el contrato/especificación pública (sin la palabra BODY).</td></tr>
+                        <tr><td><code>[BLANK_2]</code></td><td class="correct-cell">g_total_vendidas</td><td>Convención `g_` para variables globales del paquete persistentes en sesión.</td></tr>
+                        <tr><td><code>[BLANK_3]</code></td><td class="correct-cell">RETURN NUMBER</td><td>En la especificación solo se declara el tipo retornado, cerrado en punto y coma.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- EJERCICIO 6 -->
+            <div class="qa-card">
+                <div class="qa-header">
+                    <span class="qa-number">Ejercicio 6</span>
+                    <span class="qa-topic-tag">Cuerpo de Paquete y Reutilización Interna (s2_3_1)</span>
+                </div>
+                <div class="qa-question-text">
+                    Cuerpo de `pkg_boleteria`: implementa las rutinas, reutiliza internamente la función sin prefijos y actualiza la variable de sesión.
+                </div>
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-title"><i class="ph ph-file-code"></i> pkg_boleteria_body.sql (Solución Oficial)</span>
+                        <button class="code-copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-container').querySelector('pre').innerText)"><i class="ph ph-copy"></i> Copiar</button>
+                    </div>
+                    <pre class="code-body"><span class="kw">CREATE OR REPLACE</span> <span class="hl-blank">PACKAGE BODY</span> pkg_boleteria <span class="kw">AS</span> <span class="cm">-- [BLANK_1]: DDL para el cuerpo ejecutable</span>
+
+    <span class="kw">FUNCTION</span> consultar_stock(p_localidad_id <span class="kw">IN NUMBER</span>) <span class="kw">RETURN NUMBER IS</span>
+        v_stock <span class="kw">NUMBER</span>;
+    <span class="kw">BEGIN</span>
+        <span class="kw">SELECT</span> stock_disponible <span class="kw">INTO</span> v_stock
+        <span class="kw">FROM</span> LOCALIDAD_EVENTO
+        <span class="kw">WHERE</span> localidad_evento_id = p_localidad_id;
+        <span class="kw">RETURN</span> v_stock;
+    <span class="kw">EXCEPTION</span>
+        <span class="kw">WHEN</span> NO_DATA_FOUND <span class="kw">THEN</span>
+            <span class="kw">RETURN</span> <span class="num">0</span>;
+    <span class="kw">END</span> consultar_stock;
+
+    <span class="kw">PROCEDURE</span> vender_entradas(
+        p_localidad_id <span class="kw">IN NUMBER</span>,
+        p_cantidad     <span class="kw">IN NUMBER</span>
+    ) <span class="kw">IS</span>
+        v_disponible <span class="kw">NUMBER</span>;
+    <span class="kw">BEGIN</span>
+        <span class="cm">-- 1. Reutilización interna de la función del mismo paquete sin prefijo</span>
+        v_disponible := <span class="hl-blank">consultar_stock</span>(p_localidad_id); <span class="cm">-- [BLANK_2]</span>
+
+        <span class="cm">-- 2. Validación de disponibilidad</span>
+        <span class="kw">IF</span> v_disponible < p_cantidad <span class="kw">THEN</span>
+            <span class="fn">RAISE_APPLICATION_ERROR</span>(<span class="num">-20001</span>, <span class="str">'Stock insuficiente para la venta.'</span>);
+        <span class="kw">END IF</span>;
+
+        <span class="cm">-- 3. Descontar stock en la tabla</span>
+        <span class="kw">UPDATE</span> LOCALIDAD_EVENTO
+        <span class="kw">SET</span> stock_disponible = stock_disponible - p_cantidad
+        <span class="kw">WHERE</span> localidad_evento_id = p_localidad_id;
+
+        <span class="cm">-- 4. Acumular en la variable persistente de sesión</span>
+        <span class="hl-blank">g_total_vendidas</span> := <span class="hl-blank">g_total_vendidas</span> + p_cantidad; <span class="cm">-- [BLANK_3]</span>
+    <span class="kw">END</span> vender_entradas;
+
+<span class="kw">END</span> pkg_boleteria;</pre>
+                </div>
+                <table class="pauta-table">
+                    <thead><tr><th>Espacio</th><th>Opción Correcta</th><th>Por qué esta opción y no los distractores</th></tr></thead>
+                    <tbody>
+                        <tr><td><code>[BLANK_1]</code></td><td class="correct-cell">PACKAGE BODY</td><td>Identifica la unidad de compilación que contiene el código PL/SQL ejecutable.</td></tr>
+                        <tr><td><code>[BLANK_2]</code></td><td class="correct-cell">consultar_stock</td><td>Dentro del cuerpo no se requiere poner `pkg_boleteria.`, se invoca directo.</td></tr>
+                        <tr><td><code>[BLANK_3]</code></td><td class="correct-cell">g_total_vendidas</td><td>Se acumulan las entradas vendidas en la variable de paquete de la sesión activa.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- ================================================================= -->
+        <!-- SECCIÓN 6: CASO DE ARQUITECTURA Y RELATO MODELO                   -->
+        <!-- ================================================================= -->
+        <section id="sec-caso" class="section-card">
+            <div class="section-header">
+                <div class="section-header-content">
+                    <div class="section-header-icon"><i class="ph ph-buildings"></i></div>
+                    <div>
+                        <h2 class="section-title">Parte 6: Caso de Arquitectura — Relato Modelo del Docente</h2>
+                        <p class="section-desc">Resolución integral del escenario "Operación Estadio Lleno en Punto Ticket" escrita como respuesta ejemplar.</p>
+                    </div>
+                </div>
+                <span class="section-weight-badge">16 Puntos</span>
+            </div>
+
+            <div class="profe-box">
+                <div class="profe-box-title"><i class="ph ph-star-fill"></i> ¿Qué esperaba evaluar en este relato?</div>
+                <div class="profe-box-content">
+                    En esta sección no les pedí que escribieran código suelto, sino que <strong>actuaran como arquitectos de software</strong>. Un buen relato no dice simplemente <em>"crearía un trigger"</em>: especifica <strong>por qué</strong> se elige ese componente, qué <strong>timing</strong> lleva, cómo maneja los pseudo-registros (`:NEW`/`:OLD`), qué parámetros (`IN`/`OUT`/`IN OUT`) llevan los procedimientos y cómo los paquetes evitan saturar la base de datos con tablas temporales. A continuación tienen mi propuesta modelo:
+                </div>
+            </div>
+
+            <!-- RELATO MODELO -->
+            <div class="case-model-box">
+                <div class="case-model-title">
+                    <i class="ph ph-crown"></i> Relato de Arquitectura Técnica Modelo: "Operación Estadio Lleno"
+                </div>
+
+                <div class="case-paragraph">
+                    <strong>1. Estrategia de Triggers (El "Guardia Invisible" para Datos y Precios):</strong><br>
+                    Para resolver la corrupción de datos en el registro de clientes de forma infalible, implemento un trigger con timing <code>BEFORE INSERT OR UPDATE ON CLIENTE FOR EACH ROW</code>. Elijo el timing <code>BEFORE</code> porque es el único momento donde el motor me permite interceptar y mutar los valores de <code>:NEW</code> antes de que se escriban en disco. Dentro del bloque ejecuto <code>:NEW.email := LOWER(TRIM(:NEW.email))</code> y normalizo los nombres con <code>INITCAP(TRIM(...))</code>. Con esto, ni las apps móviles ni los scripts de migración masiva pueden saltarse la regla.<br>
+                    Por otro lado, para frenar las pérdidas por el "dedazo" en los precios, creo un trigger con timing <code>AFTER UPDATE OF precio ON LOCALIDAD_EVENTO FOR EACH ROW WHEN (OLD.precio != NEW.precio)</code>. Uso <code>AFTER</code> porque mi objetivo no es cancelar ni modificar el precio en el aire, sino dejar una bitácora inalterable en la tabla <code>LOG_CAMBIO_PRECIO</code> registrando el valor anterior (<code>:OLD.precio</code>) y el nuevo (<code>:NEW.precio</code>). La cláusula <code>UPDATE OF precio</code> combinada con <code>WHEN</code> asegura que el trigger solo despierte si el precio efectivamente cambió, evitando sobrecarga en actualizaciones de otras columnas.
+                </div>
+
+                <div class="case-paragraph">
+                    <strong>2. Estrategia de Funciones para Reportes Comerciales:</strong><br>
+                    Para erradicar las consultas pesadas que saturan el servidor en vivo, diseño la función almacenada <code>fn_stock_disponible(p_evento_id IN NUMBER) RETURN NUMBER</code>. Esta función realiza una consulta directa sobre <code>LOCALIDAD_EVENTO</code> sumando el stock con <code>NVL(SUM(stock_disponible), 0)</code>. Al ser una función estrictamente de lectura (sin sentencias DML), el área comercial puede incrustarla libremente en sus consultas <code>SELECT nombre, fn_stock_disponible(evento_id) FROM EVENTO</code> sin violar la restricción de pureza ni provocar el error <code>ORA-14551</code>.
+                </div>
+
+                <div class="case-paragraph">
+                    <strong>3. Estrategia de Procedimientos Almacenados Transaccionales:</strong><br>
+                    Para subsanar la desincronización de reservas expiradas, construyo el procedimiento <code>sp_cancelar_reserva_expirada</code> con un parámetro de entrada <code>p_reserva_id IN NUMBER</code> y un parámetro de salida <code>p_cliente_nombre OUT VARCHAR2</code>. El procedimiento primero rescata el cliente afectado mediante <code>SELECT ... INTO p_cliente_nombre</code>, luego ejecuta el <code>UPDATE</code> en <code>RESERVA_TEMPORAL</code> pasando el estado a <em>'CANCELADA'</em>, e inmediatamente realiza el segundo <code>UPDATE</code> en <code>LOCALIDAD_EVENTO</code> sumando +1 al stock disponible. Si la reserva no existe, controlo la excepción con <code>RAISE_APPLICATION_ERROR(-20005, 'Reserva no encontrada')</code>, garantizando atomicidad y consistencia en una sola llamada.
+                </div>
+
+                <div class="case-paragraph">
+                    <strong>4. Modularización en Paquete (Package) y Control del Turno de Cajeros:</strong><br>
+                    Finalmente, agrupo toda la lógica operativa de ventas en el paquete <code>pkg_boleteria</code>, estructurado en dos partes: primero compilo la <strong>Especificación</strong> (que publica las cabeceras de <code>consultar_stock</code>, <code>vender_entradas</code> y la variable global <code>g_total_vendidas NUMBER := 0</code>); y luego compilo el <strong>Cuerpo</strong>, donde el procedimiento de venta reutiliza internamente la función de consulta sin necesidad de prefijos. La variable <code>g_total_vendidas</code> es la solución perfecta para el cuadre de caja de los recintos: vive en la memoria de sesión (PGA) del cajero durante su jornada laboral, acumulando cada venta sin requerir tablas temporales ni generar bloqueos de disco.
+                </div>
+            </div>
+
+            <!-- TABLA DE RÚBRICA DEL RELATO -->
+            <table class="pauta-table">
+                <thead>
+                    <tr>
+                        <th>Criterio de Evaluación en el Relato</th>
+                        <th style="width: 15%; text-align: center;">Puntaje Máx.</th>
+                        <th>Qué busca el Evaluador Docente / Agente IA</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Dominio de Triggers (BEFORE/AFTER y :NEW/:OLD)</strong></td>
+                        <td style="text-align: center; font-weight: 700;">4 pts</td>
+                        <td>Diferencia cuándo usar BEFORE para limpiar `:NEW` y cuándo usar AFTER con `:OLD` para auditoría con `WHEN`.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Diseño de Funciones para Consultas SQL</strong></td>
+                        <td style="text-align: center; font-weight: 700;">4 pts</td>
+                        <td>Explica que la función retorna 1 valor con `RETURN` y que debe ser pura (sin DML) para usarse en `SELECT`.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Procedimientos con Gestión de Parámetros y Errores</strong></td>
+                        <td style="text-align: center; font-weight: 700;">4 pts</td>
+                        <td>Usa parámetros `IN` y `OUT` correctamente y menciona `RAISE_APPLICATION_ERROR` dentro del rango (-20000 a -20999).</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Arquitectura de Paquetes y Memoria PGA de Sesión</strong></td>
+                        <td style="text-align: center; font-weight: 700;">4 pts</td>
+                        <td>Separa Spec de Body y fundamenta el uso de variables de paquete en memoria de sesión para el cajero.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- ================================================================= -->
+        <!-- SECCIÓN 7: RÚBRICA Y CONVERSIÓN A NOTA CHILENA                     -->
+        <!-- ================================================================= -->
+        <section id="sec-rubrica" class="section-card">
+            <div class="section-header">
+                <div class="section-header-content">
+                    <div class="section-header-icon"><i class="ph ph-calculator"></i></div>
+                    <div>
+                        <h2 class="section-title">Parte 7: Rúbrica Oficial y Escala de Notas (1.0 a 7.0 al 60%)</h2>
+                        <p class="section-desc">Fórmulas oficiales de calificación y tabla de conversión rápida para el Agente IA y Docente.</p>
+                    </div>
+                </div>
+                <span class="section-weight-badge">Base 100 Puntos</span>
+            </div>
+
+            <div class="profe-box">
+                <div class="profe-box-title"><i class="ph ph-info"></i> Fórmula Chilena Oficial de Calificación (60% Exigencia):</div>
+                <div class="profe-box-content">
+                    Para un puntaje máximo de <strong>100 puntos</strong> y un puntaje de aprobación de <strong>60 puntos</strong> (Nota 4.0):<br>
+                    • Si <code>Puntaje &lt; 60</code>: <strong>Nota = 1.0 + 3.0 &times; (Puntaje / 60)</strong><br>
+                    • Si <code>Puntaje &ge; 60</code>: <strong>Nota = 4.0 + 3.0 &times; ((Puntaje - 60) / 40)</strong>
+                </div>
+            </div>
+
+            <table class="pauta-table">
+                <thead>
+                    <tr>
+                        <th>Sección de la Evaluación</th>
+                        <th style="text-align: center;">Cantidad de Ítems</th>
+                        <th style="text-align: center;">Puntaje Unitario</th>
+                        <th style="text-align: center;">Subtotal Sección</th>
+                        <th>Criterio de Corrección</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Parte 1: Alternativas (Selección Simple)</strong></td>
+                        <td style="text-align: center;">8 preguntas</td>
+                        <td style="text-align: center;">3 pts</td>
+                        <td style="text-align: center; font-weight: 700;">24 pts</td>
+                        <td>Binaria (3 pts correcta, 0 incorrecta).</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Parte 2: Selección Múltiple (Checkboxes)</strong></td>
+                        <td style="text-align: center;">4 preguntas</td>
+                        <td style="text-align: center;">3 pts</td>
+                        <td style="text-align: center; font-weight: 700;">12 pts</td>
+                        <td>Puntaje proporcional según aciertos sin marcar distractores.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Parte 3: Términos Pareados (Matching)</strong></td>
+                        <td style="text-align: center;">6 términos</td>
+                        <td style="text-align: center;">2 pts</td>
+                        <td style="text-align: center; font-weight: 700;">12 pts</td>
+                        <td>2 pts por cada emparejamiento técnico correcto.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Parte 4: Verdadero / Falso con Justificación</strong></td>
+                        <td style="text-align: center;">6 ítems</td>
+                        <td style="text-align: center;">3 pts</td>
+                        <td style="text-align: center; font-weight: 700;">18 pts</td>
+                        <td>1 pt identificar V/F + 2 pts calidad técnica de la justificación.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Parte 5: Bloques de Código Completados</strong></td>
+                        <td style="text-align: center;">6 ejercicios</td>
+                        <td style="text-align: center;">3 pts</td>
+                        <td style="text-align: center; font-weight: 700;">18 pts</td>
+                        <td>0.6 a 0.75 pts por cada espacio en blanco resuelto con precisión.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Parte 6: Caso de Arquitectura (Relato)</strong></td>
+                        <td style="text-align: center;">1 relato técnico</td>
+                        <td style="text-align: center;">16 pts</td>
+                        <td style="text-align: center; font-weight: 700;">16 pts</td>
+                        <td>Rúbrica de 4 dimensiones (Triggers, Funciones, Proc, Paquetes).</td>
+                    </tr>
+                    <tr style="background: #f8fafc; font-size: 1rem;">
+                        <td colspan="3"><strong>TOTAL DE LA EVALUACIÓN FORMATIVA N° 2</strong></td>
+                        <td style="text-align: center; font-weight: 800; color: var(--primary);">100 pts</td>
+                        <td><strong>Escala 1.0 a 7.0 (60 pts = 4.0)</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- TABLA DE NOTAS RÁPIDAS -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 0.75rem; margin-top: 1.5rem;">
+                <div style="background:#fee2e2; padding:0.75rem; border-radius:var(--radius-sm); text-align:center;">
+                    <div style="font-size:0.75rem; color:#991b1b; font-weight:600;">20 PUNTOS</div>
+                    <div style="font-size:1.25rem; font-weight:800; color:#b91c1c;">Nota 2.0</div>
+                </div>
+                <div style="background:#fef3c7; padding:0.75rem; border-radius:var(--radius-sm); text-align:center;">
+                    <div style="font-size:0.75rem; color:#92400e; font-weight:600;">40 PUNTOS</div>
+                    <div style="font-size:1.25rem; font-weight:800; color:#d97706;">Nota 3.0</div>
+                </div>
+                <div style="background:#ecfdf5; padding:0.75rem; border-radius:var(--radius-sm); text-align:center; border:2px solid #10b981;">
+                    <div style="font-size:0.75rem; color:#065f46; font-weight:700;">60 PUNTOS (CORTE)</div>
+                    <div style="font-size:1.25rem; font-weight:800; color:#047857;">Nota 4.0</div>
+                </div>
+                <div style="background:#f0fdf4; padding:0.75rem; border-radius:var(--radius-sm); text-align:center;">
+                    <div style="font-size:0.75rem; color:#166534; font-weight:600;">75 PUNTOS</div>
+                    <div style="font-size:1.25rem; font-weight:800; color:#15803d;">Nota 5.1</div>
+                </div>
+                <div style="background:#f0fdf4; padding:0.75rem; border-radius:var(--radius-sm); text-align:center;">
+                    <div style="font-size:0.75rem; color:#166534; font-weight:600;">90 PUNTOS</div>
+                    <div style="font-size:1.25rem; font-weight:800; color:#15803d;">Nota 6.3</div>
+                </div>
+                <div style="background:#ede9fe; padding:0.75rem; border-radius:var(--radius-sm); text-align:center; border:2px solid #8b5cf6;">
+                    <div style="font-size:0.75rem; color:#5b21b6; font-weight:700;">100 PUNTOS</div>
+                    <div style="font-size:1.25rem; font-weight:800; color:#6d28d9;">Nota 7.0</div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="pauta-footer">
+        <p><strong>BDY1103 Taller de Bases de Datos</strong> · Plataforma Docente 2026</p>
+        <p style="margin-top: 0.35rem; font-size: 0.8rem;">Pauta Oficial de Corrección y Criterios Docentes · Oracle Database 19c / 21c</p>
+    </footer>
+
+</body>
+</html>
