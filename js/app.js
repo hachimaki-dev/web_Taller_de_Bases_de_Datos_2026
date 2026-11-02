@@ -45,6 +45,10 @@ const dataMap = {
     s3_1_1_slides: () => s3_1_1_slides,
     s3_1_1_exercises: () => s3_1_1_exercises,
     s3_1_1_solutions: () => s3_1_1_solutions,
+    s3_2_1_slides: () => s3_2_1_slides,
+    s3_2_1_exercises: () => s3_2_1_exercises,
+    s3_2_1_solutions: () => s3_2_1_solutions,
+    tarea_3_2_1_data: () => tarea_3_2_1_data,
     actividad_prep_eval1_data: () => actividad_prep_eval1_data,
     quiz_formativa_1_data: () => quiz_formativa_1_data,
     quiz_formativa_2_data: () => quiz_formativa_2_data
@@ -56,15 +60,17 @@ const App = {
         'exercise-runner': ExerciseRunner,
         'evaluation-viewer': EvaluationViewer,
         'workshop-runner': WorkshopRunner,
-        'quiz-runner': QuizRunner
+        'quiz-runner': QuizRunner,
+        'task-viewer': TaskViewer
     },
     setup() {
         const course = ref(courseStructure);
-        const view = ref('home'); // 'home' | 'session' | 'evaluation' | 'activity' | 'quiz'
+        const view = ref('home'); // 'home' | 'session' | 'evaluation' | 'activity' | 'quiz' | 'task'
         const session = ref(null);
         const currentEval = ref(null);
         const currentActivity = ref(null);
         const currentQuiz = ref(null);
+        const currentTask = ref(null);
         const tab = ref('slides');
         const sidebarOpen = ref(false);
 
@@ -92,6 +98,7 @@ const App = {
             currentEval.value = null;
             currentActivity.value = null;
             currentQuiz.value = null;
+            currentTask.value = null;
             sidebarOpen.value = false;
         }
 
@@ -100,6 +107,7 @@ const App = {
             currentEval.value = null;
             currentActivity.value = null;
             currentQuiz.value = null;
+            currentTask.value = null;
             view.value = 'session';
             tab.value = 'slides';
             sidebarOpen.value = false;
@@ -110,6 +118,7 @@ const App = {
             session.value = null;
             currentActivity.value = null;
             currentQuiz.value = null;
+            currentTask.value = null;
             view.value = 'evaluation';
             sidebarOpen.value = false;
         }
@@ -120,6 +129,7 @@ const App = {
             session.value = null;
             currentEval.value = null;
             currentQuiz.value = null;
+            currentTask.value = null;
             view.value = 'activity';
             sidebarOpen.value = false;
         }
@@ -130,8 +140,33 @@ const App = {
             session.value = null;
             currentEval.value = null;
             currentActivity.value = null;
+            currentTask.value = null;
             view.value = 'quiz';
             sidebarOpen.value = false;
+        }
+
+        function openTask(t) {
+            const fn = dataMap[t.dataFile];
+            currentTask.value = fn ? fn() : null;
+            session.value = null;
+            currentEval.value = null;
+            currentActivity.value = null;
+            currentQuiz.value = null;
+            view.value = 'task';
+            sidebarOpen.value = false;
+            window.scrollTo({ top: 0 });
+        }
+
+        function openTaskById(id) {
+            const t = (course.value.tasks || []).find(x => x.id === id);
+            if (t) openTask(t);
+        }
+
+        function openSessionById(id) {
+            for (const mod of course.value.modules) {
+                const s = mod.sessions.find(x => x.id === id);
+                if (s) { openSession(s); window.scrollTo({ top: 0 }); return; }
+            }
         }
 
         function getModuleTitle(sessionId) {
@@ -142,9 +177,9 @@ const App = {
         }
 
         return {
-            course, view, session, currentEval, currentActivity, currentQuiz, tab, sidebarOpen,
+            course, view, session, currentEval, currentActivity, currentQuiz, currentTask, tab, sidebarOpen,
             currentSlides, currentExercises, currentSolutions,
-            goHome, openSession, openEvaluation, openActivity, openQuiz, getModuleTitle
+            goHome, openSession, openEvaluation, openActivity, openQuiz, openTask, openTaskById, openSessionById, getModuleTitle
         };
     }
 };

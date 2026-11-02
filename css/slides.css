@@ -189,6 +189,13 @@
     color: inherit;
 }
 
+/* Evita que bloques de código se compriman dentro de slides largos (el slide hace scroll) */
+.slide > * { flex-shrink: 0; }
+
+/* Bloques de código largos */
+.slide pre.compact { font-size: 0.68em; line-height: 1.45; padding: 0.7em 1em; margin: 0.6em 0; }
+.slide pre.compact.xs { font-size: 0.6em; line-height: 1.4; padding: 0.55em 0.9em; margin: 0.4em 0; }
+
 /* Syntax highlighting classes */
 .slide .kw { color: #2563eb; font-weight: 600; }   /* Keywords */
 .slide .fn { color: #7c3aed; }                       /* Functions */

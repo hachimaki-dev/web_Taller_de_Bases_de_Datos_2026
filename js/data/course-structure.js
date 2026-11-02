@@ -132,15 +132,16 @@ const courseStructure = {
             ]
         },
         {
-            id: '3-1',
-            title: '3.1 Introducción a NoSQL y MongoDB Atlas',
+            id: '3-2',
+            title: '3.2 Fundamentos NoSQL con MongoDB Atlas',
             sessions: [
                 {
-                    id: '3-1-1',
-                    title: 'Sesión 1: NoSQL, JSON/BSON y Operaciones Create & Read',
-                    slidesFile: 's3_1_1_slides',
-                    exercisesFile: 's3_1_1_exercises',
-                    solutionsFile: 's3_1_1_solutions'
+                    id: '3-2-1',
+                    taskId: 'tarea-3-2-1',
+                    title: 'Sesión 1: Documentos y Directorio de Talento',
+                    slidesFile: 's3_2_1_slides',
+                    exercisesFile: 's3_2_1_exercises',
+                    solutionsFile: 's3_2_1_solutions'
                 }
             ]
         }
@@ -167,6 +168,15 @@ const courseStructure = {
             badge: 'Formativa 2',
             desc: 'Funciones, Procedimientos, Triggers, Paquetes, 6 códigos a completar y Caso de Arquitectura',
             dataFile: 'quiz_formativa_2_data'
+        }
+    ],
+    tasks: [
+        {
+            id: 'tarea-3-2-1',
+            title: 'Tarea: Tu Perfil en el Directorio de Talento',
+            badge: 'Tarea',
+            desc: 'MongoDB Atlas: crea, busca, actualiza y elimina datos con tu perfil profesional. Individual, sin nota.',
+            dataFile: 'tarea_3_2_1_data'
         }
     ],
     activities: [
