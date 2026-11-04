@@ -142,6 +142,14 @@ const courseStructure = {
                     slidesFile: 's3_2_1_slides',
                     exercisesFile: 's3_2_1_exercises',
                     solutionsFile: 's3_2_1_solutions'
+                },
+                {
+                    id: '3-2-2',
+                    taskId: 'tarea-3-2-2',
+                    title: 'Sesión 2: Explorar, Diagnosticar y Estrategias de Calidad',
+                    slidesFile: 's3_2_2_slides',
+                    exercisesFile: 's3_2_2_exercises',
+                    solutionsFile: 's3_2_2_solutions'
                 }
             ]
         }
@@ -173,10 +181,17 @@ const courseStructure = {
     tasks: [
         {
             id: 'tarea-3-2-1',
-            title: 'Tarea: Tu Perfil en el Directorio de Talento',
-            badge: 'Tarea',
+            title: 'Tarea 1: Tu Perfil en el Directorio de Talento',
+            badge: 'Tarea 1',
             desc: 'MongoDB Atlas: crea, busca, actualiza y elimina datos con tu perfil profesional. Individual, sin nota.',
             dataFile: 'tarea_3_2_1_data'
+        },
+        {
+            id: 'tarea-3-2-2',
+            title: 'Tarea 2: Detective de Datos en el Directorio',
+            badge: 'Tarea 2',
+            desc: 'MongoDB Atlas: explora los 71 documentos reales, detecta los 5 tipos de errores con consultas y propón estrategias (30 min).',
+            dataFile: 'tarea_3_2_2_data'
         }
     ],
     activities: [

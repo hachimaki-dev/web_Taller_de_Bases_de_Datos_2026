@@ -98,3 +98,6 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+
+### Datos sensibles del curso ###
+datos_talento.js
