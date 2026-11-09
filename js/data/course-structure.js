@@ -150,6 +150,30 @@ const courseStructure = {
                     slidesFile: 's3_2_2_slides',
                     exercisesFile: 's3_2_2_exercises',
                     solutionsFile: 's3_2_2_solutions'
+                },
+                {
+                    id: '3-2-3',
+                    taskId: 'tarea-3-2-3',
+                    title: 'Sesión 3: Colecciones, Lotes y Operadores de Búsqueda',
+                    slidesFile: 's3_2_3_slides',
+                    exercisesFile: 's3_2_3_exercises',
+                    solutionsFile: 's3_2_3_solutions'
+                },
+                {
+                    id: '3-2-4',
+                    taskId: 'tarea-3-2-4',
+                    title: 'Sesión 4: Actualizar, Transformar y Eliminar (CRUD)',
+                    slidesFile: 's3_2_4_slides',
+                    exercisesFile: 's3_2_4_exercises',
+                    solutionsFile: 's3_2_4_solutions'
+                },
+                {
+                    id: '3-2-5',
+                    taskId: 'tarea-3-2-5',
+                    title: 'Sesión 5: Consultas de Resumen y Agrupación (Aggregate)',
+                    slidesFile: 's3_2_5_slides',
+                    exercisesFile: 's3_2_5_exercises',
+                    solutionsFile: 's3_2_5_solutions'
                 }
             ]
         }
@@ -192,6 +216,27 @@ const courseStructure = {
             badge: 'Tarea 2',
             desc: 'MongoDB Atlas: explora los 71 documentos reales, detecta los 5 tipos de errores con consultas y propón estrategias (30 min).',
             dataFile: 'tarea_3_2_2_data'
+        },
+        {
+            id: 'tarea-3-2-3',
+            title: 'Tarea 3: El Buscador de Ofertas Laborales TI',
+            badge: 'Tarea 3',
+            desc: 'MongoDB Atlas: crea las colecciones empresas y ofertas con insertMany() y filtra combinando operadores ($gt, $lte, $ne, $in, $nin, $or).',
+            dataFile: 'tarea_3_2_3_data'
+        },
+        {
+            id: 'tarea-3-2-4',
+            title: 'Tarea 4: Gestión en Vivo de Ofertas y Postulaciones',
+            badge: 'Tarea 4',
+            desc: 'MongoDB Atlas: actualiza documentos individuales y en lote ($set, $inc, $unset, $addToSet, $pull) y elimina registros ($deleteOne/Many).',
+            dataFile: 'tarea_3_2_4_data'
+        },
+        {
+            id: 'tarea-3-2-5',
+            title: 'Tarea 5: Reportes y Estadísticas del Portal de Empleo',
+            badge: 'Tarea 5',
+            desc: 'MongoDB Atlas: construye reportes de resumen y agrupación con aggregate() ($match, $group, $sum, $avg, $min, $max y $sort).',
+            dataFile: 'tarea_3_2_5_data'
         }
     ],
     activities: [
