@@ -69,7 +69,8 @@ const dataMap = {
     evaluacion_1_data: () => evaluacion_1_data,
     recuperativa_u1_data: () => recuperativa_u1_data,
     quiz_formativa_1_data: () => quiz_formativa_1_data,
-    quiz_formativa_2_data: () => quiz_formativa_2_data
+    quiz_formativa_2_data: () => quiz_formativa_2_data,
+    quiz_formativa_3_data: () => quiz_formativa_3_data
 };
 
 const App = {

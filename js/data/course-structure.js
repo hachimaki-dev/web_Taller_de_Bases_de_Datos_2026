@@ -208,6 +208,13 @@ const courseStructure = {
             badge: 'Formativa 2',
             desc: 'Funciones, Procedimientos, Triggers, Paquetes, 6 códigos a completar y Caso de Arquitectura',
             dataFile: 'quiz_formativa_2_data'
+        },
+        {
+            id: 'quiz-formativa-3',
+            title: 'Evaluación Formativa N° 3: MongoDB Atlas (EA3 — Sesiones 1 a 4)',
+            badge: 'Formativa 3',
+            desc: 'Documentos, Exploración, Operadores de Búsqueda, CRUD ($set, $inc, $unset, delete), 6 códigos y 2 diagnósticos en Playground (100 pts)',
+            dataFile: 'quiz_formativa_3_data'
         }
     ],
     tasks: [
