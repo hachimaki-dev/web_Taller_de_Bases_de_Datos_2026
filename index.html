@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="css/workshop.css">
     <link rel="stylesheet" href="css/quiz.css">
     <link rel="stylesheet" href="css/task.css">
+    <link rel="stylesheet" href="css/recuperativa.css">
 
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
@@ -136,19 +137,22 @@
                     </div>
                 </div>
 
-                <!-- Banner destacado Evaluación 1 -->
-                <div v-if="course.evaluations && course.evaluations.length > 0" class="eval-card fade-in" style="margin-bottom: 1.5rem; border-left: 4px solid var(--primary); background: linear-gradient(to right, #ffffff, #f8fafc);">
-                    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
-                        <div>
-                            <span class="badge" style="background:#ede9fe; color:#6d28d9; font-weight:700; padding:0.25rem 0.625rem; border-radius:9999px; margin-bottom:0.5rem; display:inline-block;">
-                                <i class="ph ph-certificate"></i> Hito 1 (100%)
-                            </span>
-                            <h2 style="font-size: 1.25rem; font-weight: 700; margin: 0.25rem 0;">{{ course.evaluations[0].title }}</h2>
-                            <p style="font-size: 0.875rem; color: var(--text-muted); margin: 0;">{{ course.evaluations[0].desc }}</p>
+                <!-- Banners destacados Evaluaciones Oficiales -->
+                <div v-if="course.evaluations && course.evaluations.length > 0" style="display: flex; flex-direction: column; gap: 1.25rem; margin-bottom: 1.5rem;">
+                    <div v-for="ev in course.evaluations" :key="ev.id" class="eval-card fade-in"
+                         :style="ev.id === 'eval-recup-u1' ? 'margin-bottom: 0; border-left: 4px solid #7c3aed; background: linear-gradient(to right, #ffffff, #f5f3ff);' : 'margin-bottom: 0; border-left: 4px solid var(--primary); background: linear-gradient(to right, #ffffff, #f8fafc);'">
+                        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+                            <div>
+                                <span class="badge" style="background:#ede9fe; color:#6d28d9; font-weight:700; padding:0.25rem 0.625rem; border-radius:9999px; margin-bottom:0.5rem; display:inline-block;">
+                                    <i class="ph ph-certificate"></i> {{ ev.badge || 'Evaluación' }}
+                                </span>
+                                <h2 style="font-size: 1.25rem; font-weight: 700; margin: 0.25rem 0;">{{ ev.title }}</h2>
+                                <p style="font-size: 0.875rem; color: var(--text-muted); margin: 0;">{{ ev.desc }}</p>
+                            </div>
+                            <button class="check-btn" @click="openEvaluation(ev)" :style="ev.id === 'eval-recup-u1' ? 'margin: 0; padding: 0.625rem 1.25rem; background: #7c3aed;' : 'margin: 0; padding: 0.625rem 1.25rem;'">
+                                <i class="ph ph-arrow-right"></i> {{ ev.id === 'eval-recup-u1' ? 'Abrir Recuperativa' : 'Ver Instrucciones y Pauta' }}
+                            </button>
                         </div>
-                        <button class="check-btn" @click="openEvaluation(course.evaluations[0])" style="margin: 0; padding: 0.625rem 1.25rem;">
-                            <i class="ph ph-arrow-right"></i> Ver Instrucciones y Pauta
-                        </button>
                     </div>
                 </div>
 
@@ -189,7 +193,8 @@
 
             <!-- EVALUATION VIEW -->
             <template v-if="view === 'evaluation' && currentEval">
-                <evaluation-viewer :eval-data="currentEval"></evaluation-viewer>
+                <recuperativa-viewer v-if="currentEval.type === 'recuperativa'" :eval-data="currentEval" :key="currentEval.id"></recuperativa-viewer>
+                <evaluation-viewer v-else :eval-data="currentEval" :key="currentEval.id"></evaluation-viewer>
             </template>
 
             <!-- ACTIVITY / WORKSHOP VIEW -->
@@ -249,6 +254,7 @@
     <!-- Data files -->
     <script src="js/data/course-structure.js"></script>
     <script src="js/data/evaluacion_1_data.js"></script>
+    <script src="js/data/recuperativa_u1_data.js"></script>
     <script src="js/data/actividad_prep_eval1_data.js"></script>
     <script src="js/data/quiz_formativa_1_data.js"></script>
     <script src="js/data/quiz_formativa_2_data.js"></script>
@@ -319,6 +325,7 @@
     <script src="js/components/SlideViewer.js"></script>
     <script src="js/components/ExerciseRunner.js"></script>
     <script src="js/components/EvaluationViewer.js"></script>
+    <script src="js/components/RecuperativaViewer.js"></script>
     <script src="js/components/WorkshopRunner.js"></script>
     <script src="js/components/QuizRunner.js"></script>
     <script src="js/components/TaskViewer.js"></script>

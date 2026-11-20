@@ -180,10 +180,18 @@ const courseStructure = {
     ],
     evaluations: [
         {
+            id: 'eval-recup-u1',
+            title: 'Evaluación Recuperativa — Unidad 1 (PL/SQL)',
+            badge: 'Recuperativa U1',
+            desc: 'Elige 2 de 6 problemas sobre Punto Ticket (10% Código + 90% Defensa Oral Línea por Línea)',
+            dataFile: 'recuperativa_u1_data'
+        },
+        {
             id: 'eval-1',
             title: 'Evaluación 1: Proyecto Integral PL/SQL',
             badge: 'Hito 1',
-            desc: 'Quizzes Previos (30%) + Informe Grupal (10%) + Defensa Oral (60%)'
+            desc: 'Quizzes Previos (30%) + Informe Grupal (10%) + Defensa Oral (60%)',
+            dataFile: 'evaluacion_1_data'
         }
     ],
     quizzes: [

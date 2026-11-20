@@ -1,0 +1,561 @@
+/* ============================================================
+   RECUPERATIVA.CSS — Estilos para Evaluación Recuperativa U1
+   Plataforma Docente — Taller de Bases de Datos
+   ============================================================ */
+
+.recup-selection-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.875rem;
+    background: #ffffff;
+    border: 1px solid var(--border);
+    border-left: 4px solid #7c3aed;
+    border-radius: var(--radius-lg);
+    padding: 0.875rem 1.25rem;
+    margin-bottom: 1.5rem;
+    box-shadow: var(--shadow-sm);
+}
+
+.recup-sel-info {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.625rem;
+}
+
+.recup-sel-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    background: #f1f5f9;
+    color: var(--text-main);
+    padding: 0.35rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.825rem;
+}
+
+.recup-sel-pill.ready {
+    background: #dcfce7;
+    color: #166534;
+}
+
+.recup-sel-names {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.recup-chip {
+    font-size: 0.775rem;
+    font-weight: 600;
+    padding: 0.25rem 0.625rem;
+    border-radius: 9999px;
+    border: 1px solid var(--primary);
+    background: #f8fafc;
+}
+
+.recup-sel-hint {
+    font-size: 0.825rem;
+    color: var(--text-muted);
+}
+
+.recup-go-btn {
+    margin: 0 !important;
+    padding: 0.5rem 1rem !important;
+    background: #7c3aed !important;
+}
+
+.recup-tab-count {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 20px;
+    height: 20px;
+    padding: 0 5px;
+    border-radius: 9999px;
+    background: #7c3aed;
+    color: #fff;
+    font-size: 0.7rem;
+    font-weight: 700;
+    margin-left: 0.35rem;
+}
+
+/* Alertas */
+.recup-alert-warning,
+.recup-alert-info {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+    padding: 0.75rem 1rem;
+    border-radius: var(--radius);
+    font-size: 0.85rem;
+    margin-bottom: 1rem;
+}
+
+.recup-alert-warning {
+    background: #fef3c7;
+    border: 1px solid #f59e0b;
+    color: #92400e;
+}
+
+.recup-alert-warning button {
+    margin-left: auto;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: inherit;
+    font-size: 1rem;
+}
+
+.recup-alert-info {
+    background: #eff6ff;
+    border: 1px solid #93c5fd;
+    color: #1e40af;
+}
+
+/* Catálogo de 6 Problemas */
+.recup-problems-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.recup-problem-card {
+    background: #ffffff;
+    border: 2px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    transition: all 0.2s ease;
+    box-shadow: var(--shadow-sm);
+}
+
+.recup-problem-card:hover {
+    box-shadow: var(--shadow-md);
+}
+
+.recup-problem-card.selected {
+    background: linear-gradient(to bottom right, #ffffff, #faf5ff);
+    box-shadow: var(--shadow-md);
+}
+
+.recup-problem-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.75rem;
+}
+
+.recup-problem-title-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 0.375rem;
+}
+
+.recup-problem-title-wrap h3 {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--text-main);
+    margin: 0;
+}
+
+.recup-p-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    color: #ffffff;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.2rem 0.65rem;
+    border-radius: 9999px;
+    width: fit-content;
+}
+
+.recup-select-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius);
+    border: 1.5px solid var(--border);
+    background: #f8fafc;
+    color: var(--text-main);
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s;
+}
+
+.recup-select-btn:hover {
+    background: #f1f5f9;
+    border-color: var(--primary);
+    color: var(--primary);
+}
+
+.recup-select-btn.active {
+    color: #ffffff;
+}
+
+.recup-problem-summary {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin-bottom: 0.875rem;
+}
+
+.recup-tables-row {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-bottom: 1rem;
+    padding: 0.5rem 0.75rem;
+    background: #f8fafc;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+}
+
+.recup-tables-label {
+    font-size: 0.775rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    margin-right: 0.25rem;
+}
+
+.recup-table-tag {
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 0.75rem;
+    background: #e2e8f0;
+    color: #0f172a;
+    padding: 0.15rem 0.5rem;
+    border-radius: 4px;
+    font-weight: 600;
+}
+
+.recup-reqs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 0.75rem;
+}
+
+.recup-req-item {
+    background: #f8fafc;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 0.875rem;
+}
+
+.recup-req-label {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--primary);
+    background: var(--primary-light);
+    padding: 0.15rem 0.5rem;
+    border-radius: 4px;
+    margin-bottom: 0.4rem;
+}
+
+.recup-req-item p {
+    font-size: 0.825rem;
+    color: var(--text-main);
+    line-height: 1.5;
+    margin: 0;
+}
+
+.recup-req-item code {
+    background: #e2e8f0;
+    padding: 0.08rem 0.3rem;
+    border-radius: 3px;
+    font-size: 0.78rem;
+}
+
+.recup-card-footer {
+    margin-top: 1rem;
+    padding-top: 0.75rem;
+    border-top: 1px dashed var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.recup-selected-note {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--success);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+.recup-open-editor-link {
+    background: none;
+    border: none;
+    color: var(--primary);
+    font-size: 0.825rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.recup-open-editor-link:hover {
+    text-decoration: underline;
+}
+
+/* Espacio de Resolución */
+.recup-empty-state {
+    text-align: center;
+    padding: 3rem 1.5rem;
+}
+
+.recup-empty-state i {
+    font-size: 2.5rem;
+    color: var(--primary);
+    margin-bottom: 0.75rem;
+    display: block;
+}
+
+.recup-empty-state p {
+    color: var(--text-muted);
+    max-width: 480px;
+    margin: 0.5rem auto 1.25rem;
+}
+
+.recup-workspace-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+.recup-block-switcher {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.recup-block-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 0.875rem;
+    border-radius: var(--radius);
+    border: 2px solid var(--border);
+    background: #ffffff;
+    font-size: 0.825rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: all 0.15s;
+}
+
+.recup-block-btn.active {
+    background: #ffffff;
+    box-shadow: var(--shadow-sm);
+}
+
+.recup-block-num {
+    color: #ffffff;
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 0.15rem 0.45rem;
+    border-radius: 4px;
+}
+
+.recup-download-all-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.55rem 1rem;
+    border-radius: var(--radius);
+    border: none;
+    background: #0f172a;
+    color: #ffffff;
+    font-size: 0.825rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.recup-download-all-btn:hover {
+    background: #1e293b;
+}
+
+.recup-editor-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+.recup-editor-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.recup-action-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.4rem 0.75rem;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    background: #f8fafc;
+    color: var(--text-main);
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s;
+}
+
+.recup-action-btn:hover {
+    background: #e2e8f0;
+}
+
+.recup-action-btn.danger:hover {
+    background: #fee2e2;
+    color: #b91c1c;
+    border-color: #fca5a5;
+}
+
+.recup-reqs-collapse {
+    background: #f8fafc;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 0.75rem 1rem;
+    margin-bottom: 1rem;
+}
+
+.recup-reqs-collapse summary {
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-main);
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.recup-textarea-wrap {
+    border: 1px solid #334155;
+    border-radius: var(--radius);
+    overflow: hidden;
+    background: #0f172a;
+}
+
+.recup-textarea-bar {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    padding: 0.5rem 0.875rem;
+    background: #1e293b;
+    color: #94a3b8;
+    font-size: 0.75rem;
+    border-bottom: 1px solid #334155;
+}
+
+.recup-textarea-bar code {
+    color: #38bdf8;
+}
+
+.recup-code-editor {
+    width: 100%;
+    min-height: 360px;
+    padding: 1rem;
+    background: #0f172a;
+    color: #e2e8f0;
+    border: none;
+    outline: none;
+    resize: vertical;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 0.875rem;
+    line-height: 1.55;
+    tab-size: 4;
+}
+
+/* Reglas e instrucciones */
+.recup-rules-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+}
+
+.recup-rule-box {
+    background: #f8fafc;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1rem;
+}
+
+.recup-rule-box i {
+    font-size: 1.5rem;
+    color: #7c3aed;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.recup-rule-box h4 {
+    font-size: 0.9rem;
+    font-weight: 700;
+    margin-bottom: 0.35rem;
+}
+
+.recup-rule-box p {
+    font-size: 0.825rem;
+    color: var(--text-muted);
+    line-height: 1.45;
+}
+
+.recup-warning-banner {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.875rem;
+    background: #fef2f2;
+    border: 1px solid #fecaca;
+    border-left: 4px solid #dc2626;
+    border-radius: var(--radius);
+    padding: 1rem 1.25rem;
+    color: #7f1d1d;
+}
+
+.recup-warning-banner i {
+    font-size: 1.5rem;
+    color: #dc2626;
+    flex-shrink: 0;
+    margin-top: 0.1rem;
+}
+
+.recup-warning-banner p {
+    font-size: 0.85rem;
+    margin-top: 0.25rem;
+    line-height: 1.5;
+}
+
+.recup-rubric-table td {
+    font-size: 0.8rem;
+    vertical-align: top;
+    line-height: 1.45;
+}
+
+@media (max-width: 768px) {
+    .recup-reqs-grid { grid-template-columns: 1fr; }
+    .recup-code-editor { min-height: 280px; }
+}
+

@@ -66,6 +66,8 @@ const dataMap = {
     tarea_3_2_4_data: () => tarea_3_2_4_data,
     tarea_3_2_5_data: () => tarea_3_2_5_data,
     actividad_prep_eval1_data: () => actividad_prep_eval1_data,
+    evaluacion_1_data: () => evaluacion_1_data,
+    recuperativa_u1_data: () => recuperativa_u1_data,
     quiz_formativa_1_data: () => quiz_formativa_1_data,
     quiz_formativa_2_data: () => quiz_formativa_2_data
 };
@@ -75,6 +77,7 @@ const App = {
         'slide-viewer': SlideViewer,
         'exercise-runner': ExerciseRunner,
         'evaluation-viewer': EvaluationViewer,
+        'recuperativa-viewer': RecuperativaViewer,
         'workshop-runner': WorkshopRunner,
         'quiz-runner': QuizRunner,
         'task-viewer': TaskViewer
@@ -130,13 +133,15 @@ const App = {
         }
 
         function openEvaluation(ev) {
-            currentEval.value = ev.id === 'eval-1' ? evaluacion_1_data : null;
+            const fn = ev.dataFile ? dataMap[ev.dataFile] : null;
+            currentEval.value = fn ? fn() : (ev.id === 'eval-1' ? evaluacion_1_data : null);
             session.value = null;
             currentActivity.value = null;
             currentQuiz.value = null;
             currentTask.value = null;
             view.value = 'evaluation';
             sidebarOpen.value = false;
+            window.scrollTo({ top: 0 });
         }
 
         function openActivity(act) {
