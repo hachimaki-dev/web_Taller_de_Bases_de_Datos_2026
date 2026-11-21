@@ -60,6 +60,7 @@ const dataMap = {
     s3_2_5_slides: () => s3_2_5_slides,
     s3_2_5_exercises: () => s3_2_5_exercises,
     s3_2_5_solutions: () => s3_2_5_solutions,
+    s3_2_6_slides: () => s3_2_6_slides,
     tarea_3_2_1_data: () => tarea_3_2_1_data,
     tarea_3_2_2_data: () => tarea_3_2_2_data,
     tarea_3_2_3_data: () => tarea_3_2_3_data,
@@ -134,6 +135,10 @@ const App = {
         }
 
         function openEvaluation(ev) {
+            if (ev.sessionId) {
+                openSessionById(ev.sessionId);
+                return;
+            }
             const fn = ev.dataFile ? dataMap[ev.dataFile] : null;
             currentEval.value = fn ? fn() : (ev.id === 'eval-1' ? evaluacion_1_data : null);
             session.value = null;

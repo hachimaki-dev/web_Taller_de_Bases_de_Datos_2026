@@ -174,11 +174,23 @@ const courseStructure = {
                     slidesFile: 's3_2_5_slides',
                     exercisesFile: 's3_2_5_exercises',
                     solutionsFile: 's3_2_5_solutions'
+                },
+                {
+                    id: '3-2-6',
+                    title: 'Sesión 6: Guía Evaluación 3 (Informe, Defensa y Taller)',
+                    slidesFile: 's3_2_6_slides'
                 }
             ]
         }
     ],
     evaluations: [
+        {
+            id: 'eval-3',
+            title: 'Evaluación 3: Proyecto NoSQL en MongoDB Atlas',
+            badge: 'Hito 3 (EA3)',
+            desc: 'Quiz Formativo (30%) + Informe en Equipo (10%) + Defensa Oral Individual (60%)',
+            sessionId: '3-2-6'
+        },
         {
             id: 'eval-recup-u1',
             title: 'Evaluación Recuperativa — Unidad 1 (PL/SQL)',

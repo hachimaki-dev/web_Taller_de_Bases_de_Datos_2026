@@ -232,10 +232,10 @@
                         <button class="tab" :class="{ active: tab === 'slides' }" @click="tab = 'slides'">
                             <i class="ph ph-presentation"></i> Presentación
                         </button>
-                        <button class="tab" :class="{ active: tab === 'exercises' }" @click="tab = 'exercises'">
+                        <button v-if="currentExercises && currentExercises.length > 0" class="tab" :class="{ active: tab === 'exercises' }" @click="tab = 'exercises'">
                             <i class="ph ph-pencil-line"></i> Guía Práctica
                         </button>
-                        <button class="tab" :class="{ active: tab === 'solutions' }" @click="tab = 'solutions'">
+                        <button v-if="currentExercises && currentExercises.length > 0" class="tab" :class="{ active: tab === 'solutions' }" @click="tab = 'solutions'">
                             <i class="ph ph-check-circle"></i> Solucionario
                         </button>
                     </div>
@@ -316,6 +316,7 @@
     <script src="js/data/s3_2_5_slides.js"></script>
     <script src="js/data/s3_2_5_exercises.js"></script>
     <script src="js/data/s3_2_5_solutions.js"></script>
+    <script src="js/data/s3_2_6_slides.js"></script>
     <script src="js/data/tarea_3_2_1_data.js"></script>
     <script src="js/data/tarea_3_2_2_data.js"></script>
     <script src="js/data/tarea_3_2_3_data.js"></script>
